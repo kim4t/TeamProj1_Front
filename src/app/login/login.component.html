@@ -1,13 +1,19 @@
+
+
 <div fxLayoutAlign="center center" fxFlexFill class="main-div">
     <mat-card fxFlex="18">
             <mat-toolbar class="toolbar-div">Login Page</mat-toolbar>
         <form fxLayoutAlign="stretch" fxLayout="column" class="login-form">
             <mat-form-field>
                 <input matInput placeholder="Username">
+                <!-- icon -->
+                <mat-icon aria-hidden="false">account_box</mat-icon>
             </mat-form-field>
         
             <mat-form-field>
                 <input matInput type="password" placeholder="Password">
+                <!-- icon -->
+                <mat-icon aria-hidden="false">https</mat-icon>
             </mat-form-field>
             <button mat-raised-button type="submit" class="button-div" (click)="go()">Login</button>
         </form>

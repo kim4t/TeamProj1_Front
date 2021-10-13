@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private elementRef: ElementRef) { }
 
   ngOnInit(): void 
   {
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/registration']);
   }
 
+  
 }
 
 

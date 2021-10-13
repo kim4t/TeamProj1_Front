@@ -1,11 +1,12 @@
 <div class="login-page">
+    
     <div class="form">
       <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" class="login-form">
         <!-- ngModel is used to bind the input data-->
         <input type="email" placeholder="E-mail" name="e-mail" ngModel>
         <button type="submit">Submit</button>
       </form>
-
     </div>
-  </div>
+    
+</div>
 
