@@ -18,7 +18,7 @@ export class SendemailComponent implements OnInit {
   onSubmit(data: NgForm)
   {
       /** POST: add a new e-mail to the database */
-      /** default url 8081, you could specify path in future */
+      /** default back-end url 8081, you could specify path in future */
     this.http.post('http://localhost:8081/HR/email', data)
     .subscribe((result)=>{
       console.warn("result", result)

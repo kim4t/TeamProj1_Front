@@ -16,7 +16,7 @@ export class OnboardingComponent implements OnInit {
   onSubmit(data: NgForm)
   {
       /** POST: send username and password to back-end */
-      /** default url 8082, you could specify path in future */
+      /** default back-end url 8082, you could specify path in future */
     this.http.post('http://localhost:8081', data)
     .subscribe((result)=>{
       console.warn("result", result)
