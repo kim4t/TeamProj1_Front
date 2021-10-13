@@ -17,7 +17,7 @@ export class OnboardingComponent implements OnInit {
   {
       /** POST: send username and password to back-end */
       /** default url 8082, you could specify path in future */
-    this.http.post('http://localhost:8082', data)
+    this.http.post('http://localhost:8081', data)
     .subscribe((result)=>{
       console.warn("result", result)
     })

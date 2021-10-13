@@ -19,7 +19,7 @@ export class SendemailComponent implements OnInit {
   {
       /** POST: add a new e-mail to the database */
       /** default url 8081, you could specify path in future */
-    this.http.post('http://localhost:8081', data)
+    this.http.post('http://localhost:8081/HR/email', data)
     .subscribe((result)=>{
       console.warn("result", result)
     })
