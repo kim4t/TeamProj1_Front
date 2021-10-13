@@ -12,7 +12,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
 import { MatToolbarModule} from '@angular/material/toolbar';
-import { RegistrationComponent } from './registration/registration.component';
+import { SendemailComponent } from './sendemail/sendemail.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule} from '@angular/material/icon';
@@ -21,7 +21,7 @@ import { MatIconModule} from '@angular/material/icon';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent,
+    SendemailComponent,
   ],
   imports: [
     BrowserModule,

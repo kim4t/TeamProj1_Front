@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   go(): void
   {
     //navigate to other page
-    this.router.navigate(['/registration']);
+    this.router.navigate(['/SendE-mail']);
   }
 
   

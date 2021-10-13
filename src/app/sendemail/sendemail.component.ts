@@ -1,14 +1,14 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
- '@angular/common/http';
+
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  selector: 'app-sendemail',
+  templateUrl: './sendemail.component.html',
+  styleUrls: ['./sendemail.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class SendemailComponent implements OnInit {
 
   constructor(private http: HttpClient, private elementRef: ElementRef) { }
 

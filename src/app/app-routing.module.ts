@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { SendemailComponent } from './sendemail/sendemail.component';
 
 const routes: Routes = [
   // specify Login component 
@@ -11,8 +11,8 @@ const routes: Routes = [
   },
   {
     // specify Registration Component
-    path: 'registration',
-    component: RegistrationComponent
+    path: 'SendE-mail',
+    component: SendemailComponent
   }
 ];
 
