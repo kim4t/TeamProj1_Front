@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
     //navigate to other page
     this.router.navigate(['/registration']);
   }
+
 }
 
 
