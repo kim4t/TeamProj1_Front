@@ -15,18 +15,13 @@ export class SendemailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(data: any)
+  onSubmit(form: any)
   {
       /** POST: add a new e-mail to the database */
       /** default url 8081, you could specify path in future */
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    let options = {headers}
-    let test  = new FormData();
-    test.append('e-mail', data['e-mail']);
-    let request = {
-      'e-mail': data["e-mail"] 
-    }
-    this.http.post('http://localhost:8081/HR/email', test, {responseType: 'text'})
+    let data  = new FormData();
+    data.append('e-mail', form['e-mail']);
+    this.http.post('http://localhost:8081/HR/email', data, {responseType: 'text'})
     .subscribe((result)=>{
       console.log(result);
     })
