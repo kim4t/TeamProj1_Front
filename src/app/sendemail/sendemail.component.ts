@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -15,15 +15,16 @@ export class SendemailComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(data: NgForm)
+  onSubmit(form: any)
   {
       /** POST: add a new e-mail to the database */
-      /** default back-end url 8081, you could specify path in future */
-    this.http.post('http://localhost:8081/HR/email', data)
+      /** default url 8081, you could specify path in future */
+    let data  = new FormData();
+    data.append('e-mail', form['e-mail']);
+    this.http.post('http://localhost:8081/HR/email', data, {responseType: 'text'})
     .subscribe((result)=>{
-      console.warn("result", result)
+      console.log(result);
     })
-    console.warn(data);
   }
   
   ngAfterViewInit() 
