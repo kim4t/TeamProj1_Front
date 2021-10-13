@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     // specify On-Boarding Component
-    path: 'login/registration',
+    path: 'user/on-boarding',
     component: OnboardingComponent,
   }
 ];
