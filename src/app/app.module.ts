@@ -16,12 +16,14 @@ import { SendemailComponent } from './sendemail/sendemail.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule} from '@angular/material/icon';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SendemailComponent,
+    OnboardingComponent,
   ],
   imports: [
     BrowserModule,

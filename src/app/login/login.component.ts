@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private elementRef: ElementRef) { }
+  constructor(private router: Router, private http: HttpClient) { }
 
   ngOnInit(): void 
   {
@@ -19,6 +20,17 @@ export class LoginComponent implements OnInit {
   {
     //navigate to other page
     this.router.navigate(['/SendE-mail']);
+  }
+
+  onSubmit(data: NgForm)
+  {
+      /** POST: send username and password to back-end */
+      /** default url 8082, you could specify path in future */
+    this.http.post('http://localhost:8082', data)
+    .subscribe((result)=>{
+      console.warn("result", result)
+    })
+    console.warn(data);
   }
 
   

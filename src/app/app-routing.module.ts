@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SendemailComponent } from './sendemail/sendemail.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
 
 const routes: Routes = [
   // specify Login component 
@@ -13,6 +14,11 @@ const routes: Routes = [
     // specify Registration Component
     path: 'SendE-mail',
     component: SendemailComponent
+  },
+  {
+    // specify On-Boarding Component
+    path: 'login/registration',
+    component: OnboardingComponent,
   }
 ];
 
