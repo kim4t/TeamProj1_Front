@@ -1,0 +1,17 @@
+
+
+<div class="login-page">
+    
+        
+    <div class="form">
+      <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" class="login-form">
+
+        <input type="text" placeholder="*Username" name="userName" ngModel>
+        <input type="text" placeholder="*Password" name="password" ngModel>
+        
+
+        <button>Sign Up</button>
+      </form>
+    </div>
+    
+</div>
