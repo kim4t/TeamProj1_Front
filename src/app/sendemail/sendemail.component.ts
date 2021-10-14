@@ -18,13 +18,14 @@ export class SendemailComponent implements OnInit {
   onSubmit(form: any)
   {
       /** POST: add a new e-mail to the database */
-      /** default url 8081, you could specify path in future */
+      /** http://localhost:8081/HR/email receive the email as form-data type */
     let data  = new FormData();
     data.append('e-mail', form['e-mail']);
     this.http.post('http://localhost:8081/HR/email', data, {responseType: 'text'})
     .subscribe((result)=>{
       console.log(result);
     })
+    
   }
   
   ngAfterViewInit() 
