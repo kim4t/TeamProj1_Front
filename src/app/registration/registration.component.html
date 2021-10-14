@@ -6,6 +6,17 @@
     <div class="form">
       <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" class="login-form">
 
+        <!-- interpolation data binding -->
+        
+
+        <strong>Your E-mail:</strong> {{email}}
+        <br><br>
+        <strong>Your Token:</strong>  {{token}}
+        <br><br>
+
+      
+
+        <!-- Username && Password required from user -->
         <input type="text" placeholder="*Username" name="userName" ngModel>
         <input type="text" placeholder="*Password" name="password" ngModel>
         
