@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule} from '@angular/material/icon';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
     LoginComponent,
     SendemailComponent,
     OnboardingComponent,
+    RegistrationComponent,
   ],
   imports: [
     BrowserModule,
