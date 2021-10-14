@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-registration',
@@ -21,18 +22,15 @@ export class RegistrationComponent implements OnInit {
         console.log(params);
         this.email = params.email;
         this.token = params.token;
-
-        // send email and token to backend for verification
-
-        
       }
+      
     );
   }
 
   onSubmit(form: any)
   {
 
-      /** POST username, password, e-mail, and token to the database */
+      /** POST username, password, e-mail, and token to the backend */
 
     let data  = new FormData();
     data.append('userName', form['userName']);
@@ -40,15 +38,21 @@ export class RegistrationComponent implements OnInit {
     data.append('email', this.email);
     data.append('token', this.token);
     this.http.post('http://localhost:8081/login/register', data, {responseType: 'text'})
-    .subscribe((result)=>{
+    .subscribe((result)=>
+    {
       console.log(result);
-    })
-    this.router.navigate(['/login/register']);
+
+      // If the result == Succeed, redirect the user to On-boarding page.
+      // Otherwise, show the error box and let the user stay in the same page.
+      if(result == "Succeed")
+        this.router.navigate(['/user/on-boarding']);
+      else if(result == "Exist User")
+      this.router.navigate(['']);
+      else
+        alert("Stay here because " + result);
+    }
+      
+    )
   }
 
-  go(): void
-  {
-    //navigate to other page
-    this.router.navigate(['/employee/onboard']);
-  }
 }
