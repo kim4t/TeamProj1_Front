@@ -1,6 +1,7 @@
 import { Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';import { NgForm } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -27,13 +28,12 @@ export class SendemailComponent implements OnInit {
     })
     
   }
-  
-  ngAfterViewInit() 
-  {
+
+  ngAfterViewInit() {
     /** this function is for color change, but there is a bug
      *  When we go back to last page, the background-color reflects.
-     * */ 
+     * */
     this.elementRef.nativeElement.ownerDocument
-        .body.style.backgroundColor = '#76b852';
+      .body.style.backgroundColor = '#76b852';
   }
 }
