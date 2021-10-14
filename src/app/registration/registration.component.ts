@@ -43,7 +43,7 @@ export class RegistrationComponent implements OnInit {
     .subscribe((result)=>{
       console.log(result);
     })
-    this.router.navigate(['/employee/on-boarding']);
+    this.router.navigate(['/login/register']);
   }
 
   go(): void

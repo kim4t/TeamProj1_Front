@@ -6,14 +6,11 @@
     <div class="form">
       <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" class="login-form">
 
-        <!-- username -->
         <input type="text" placeholder="*Username" name="userName" ngModel>
-
-        <!-- password -->
         <input type="text" placeholder="*Password" name="password" ngModel>
         
 
-        <button type="submit">Sign Up</button>
+        <button>Sign Up</button>
       </form>
     </div>
     

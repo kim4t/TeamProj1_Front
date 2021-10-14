@@ -12,7 +12,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    // specify Registration Component
+    // specify Send Email Component
     path: 'SendE-mail',
     component: SendemailComponent
   },
@@ -22,7 +22,7 @@ const routes: Routes = [
     component: OnboardingComponent,
   },
   {
-    // specify registration Component
+    // specify Registration Component
     path: 'login/register',
     component: RegistrationComponent,
   }
