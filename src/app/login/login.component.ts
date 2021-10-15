@@ -16,23 +16,31 @@ export class LoginComponent implements OnInit {
     
   }
 
-  go(): void
+  onSubmit(form: any)
   {
-    //navigate to other page
-    this.router.navigate(['/SendE-mail']);
-  }
 
-  onSubmit(data: NgForm)
-  {
-      /** POST: send username and password to back-end */
-      /** default url 8082, you could specify path in future */
-    this.http.post('http://localhost:9999/login', data)
-    .subscribe((result)=>{
-      console.warn("result", result)
-    })
-    console.warn(data);
-  }
+      /** POST username, password, e-mail, and token to the backend */
 
+    let data  = new FormData();
+    data.append('userName', form['userName']);
+    data.append('password', form['password']);
+    this.http.post('http://localhost:9999/login', data, {responseType: 'text'})
+    .subscribe((result)=>
+    {
+      console.log(result);
+
+      // If the user logs in successfully, redirect to other pages upon user status: rejected, pending, or approved.
+      // Otherwise, let the user stay in same page if it's invalid username or password. 
+      if(result == "HR")
+        this.router.navigate(['/HR/homePage']);
+      else if(result == "employee")
+        this.router.navigate(['/employee/homePage']);
+      else
+        alert("Invalid Username or Password !");
+    }
+      
+    )
+  }
   
 }
 

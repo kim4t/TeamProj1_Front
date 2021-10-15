@@ -13,11 +13,13 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatCardModule} from '@angular/material/card';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { SendemailComponent } from './sendemail/sendemail.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule} from '@angular/material/icon';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { HrHomepageComponent } from './hr-module/hr-homepage/hr-homepage.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +28,11 @@ import { RegistrationComponent } from './registration/registration.component';
     SendemailComponent,
     OnboardingComponent,
     RegistrationComponent,
+    FileUploadComponent,
+    HrHomepageComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
