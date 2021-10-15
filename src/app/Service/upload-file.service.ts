@@ -11,7 +11,7 @@ export class UploadFileService {
   pushFileToStorage(file: File): Observable<string> {
     const data: FormData = new FormData();
     data.append('file', file);
-    return this.https.post('http://localhost:8081/uploadFile', data, {responseType: 'text'})
+    return this.https.post('http://localhost:8081/uploadFile', data, {responseType: 'text', withCredentials: true})
 
     /*
     const newRequest = new HttpRequest('POST', 'http://localhost:8081/uploadFile', data, {
