@@ -26,7 +26,7 @@ export class SendemailComponent implements OnInit {
     .subscribe((result)=>{
       console.log(result);
     })
-    
+    alert("e-mail sent ");
   }
 
   ngAfterViewInit() {
