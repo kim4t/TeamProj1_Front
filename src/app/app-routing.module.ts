@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { SendemailComponent } from './sendemail/sendemail.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { HrHomepageComponent } from './hr-module/hr-homepage/hr-homepage.component';
 const routes: Routes = [
   {
     // specify Login component 
