@@ -1,0 +1,7 @@
+<h2>File upload</h2>
+<div>
+    <input type="file" id="customFile" (change)="selectFile($event)" placeholder="File To Upload">
+    <button class="btn" [disabled]="!selectedFiles" (click)="upload()">Save File</button> <br><br>
+    <input type="text" placeholder="File to View"  name="fileName" [(ngModel)]="file" readonly>
+    <button class="btn btn-primary" (click)="viewFile()">View File</button>
+</div>
