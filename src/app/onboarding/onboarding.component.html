@@ -2,9 +2,11 @@
 
 <div class="login-page">
     
-        
+  <app-file-upload></app-file-upload>
+
     <div class="form">
       <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost)" class="login-form" ngNativeValidate>
+
 
         <!-- Name -->
         <!-- fname && lname are required. mname can be null-->
@@ -60,7 +62,7 @@
           <input [(ngModel)]="emergencyContact[index].middleName"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
           <input [(ngModel)]="emergencyContact[index].cellphone" placeholder="cellphone" [ngModelOptions]="{standalone: true}">
           <input [(ngModel)]="emergencyContact[index].email" placeholder="email" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].relationship" placeholder="email" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].relationship" placeholder="relationship" [ngModelOptions]="{standalone: true}">
         </div>
 
         <button type="submit">Submit</button>
