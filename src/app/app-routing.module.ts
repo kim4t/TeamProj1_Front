@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { SendemailComponent } from './sendemail/sendemail.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
-
 const routes: Routes = [
   {
     // specify Login component 
@@ -25,6 +24,10 @@ const routes: Routes = [
     // specify Registration Component
     path: 'login/register',
     component: RegistrationComponent,
+  },
+  {
+    path: 'employeeModule',
+    loadChildren: () => import('./employee-module/employee.module').then(m => m.EmployeeModule),
   }
 ];
 

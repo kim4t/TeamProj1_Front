@@ -19,6 +19,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { HrHomepageComponent } from './hr-module/hr-homepage/hr-homepage.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     OnboardingComponent,
     RegistrationComponent,
     FileUploadComponent,
+    HrHomepageComponent,
   ],
   imports: [
     ReactiveFormsModule,

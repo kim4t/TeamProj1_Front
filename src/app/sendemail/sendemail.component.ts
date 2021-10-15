@@ -22,7 +22,7 @@ export class SendemailComponent implements OnInit {
       /** http://localhost:8081/HR/email receive the email as form-data type */
     let data  = new FormData();
     data.append('e-mail', form['e-mail']);
-    this.http.post('http://localhost:8081/HR/email', data, {responseType: 'text'})
+    this.http.post('http://localhost:8081/HR/email', data, {responseType: 'text', withCredentials: true})
     .subscribe((result)=>{
       console.log(result);
     })

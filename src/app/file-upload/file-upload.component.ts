@@ -15,7 +15,6 @@ export class FileUploadComponent implements OnInit {
 
   constructor(private uploadService: UploadFileService) { }
 
-
   ngOnInit(): void {
   }
 
@@ -36,7 +35,4 @@ export class FileUploadComponent implements OnInit {
   selectFile(event: any) {
     this.selectedFiles = event.target.files;
   }
-
-
-
 }
