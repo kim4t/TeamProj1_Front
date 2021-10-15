@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     let data  = new FormData();
     data.append('userName', form['userName']);
     data.append('password', form['password']);
-    this.http.post('http://localhost:9999/login', data, {responseType: 'text'})
+    this.http.post('http://localhost:9999/login', data, {responseType: 'text', withCredentials: true})
     .subscribe((result)=>
     {
       console.log(result);

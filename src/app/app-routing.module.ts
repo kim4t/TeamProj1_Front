@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { SendemailComponent } from './sendemail/sendemail.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { EmployeeHomepageComponent } from './employee-module/employee-homepage/employee-homepage.component';
 import { HrHomepageComponent } from './hr-module/hr-homepage/hr-homepage.component';
 const routes: Routes = [
   {
@@ -28,14 +27,8 @@ const routes: Routes = [
     component: RegistrationComponent,
   },
   {
-    // specify EmployeeHompage Component
-    path: 'employee/homePage',
-    component: EmployeeHomepageComponent,
-  },
-  {
-    // specify EmployeeHompage Component
-    path: 'HR/homePage',
-    component: HrHomepageComponent,
+    path: 'employeeModule',
+    loadChildren: () => import('./employee-module/employee.module').then(m => m.EmployeeModule),
   }
 ];
 
