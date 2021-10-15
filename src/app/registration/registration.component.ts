@@ -33,8 +33,11 @@ export class RegistrationComponent implements OnInit {
       /** POST username, password, e-mail, and token to the backend */
 
     let data  = new FormData();
-    data.append('userName', form['userName']);
-    data.append('password', form['password']);
+    for ( var key in form ) {
+      data.append(key, form[key]);
+    }
+    //data.append('userName', form['userName']);
+    //data.append('password', form['password']);
     data.append('email', this.email);
     data.append('token', this.token);
     this.http.post('http://localhost:8081/login/register', data, {responseType: 'text'})
