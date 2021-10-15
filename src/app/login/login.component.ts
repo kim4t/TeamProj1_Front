@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   {
       /** POST: send username and password to back-end */
       /** default url 8082, you could specify path in future */
-    this.http.post('http://localhost:8081/login', data)
+    this.http.post('http://localhost:9999/login', data)
     .subscribe((result)=>{
       console.warn("result", result)
     })

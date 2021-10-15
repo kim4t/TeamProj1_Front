@@ -39,11 +39,11 @@ export class RegistrationComponent implements OnInit {
     data.append('password', form['password']);
     data.append('email', this.email);
     data.append('token', this.token);
-    this.http.post('http://localhost:8081/login/register', data, {responseType: 'text'})
+    this.http.post('http://localhost:9999/login/register', data, {responseType: 'text'})
     .subscribe((result)=>{
       console.log(result);
     })
-    this.router.navigate(['/login/register']);
+    this.router.navigate(['/employee/on-boarding']);
   }
 
   go(): void
