@@ -25,6 +25,10 @@ const routes: Routes = [
     // specify Registration Component
     path: 'login/register',
     component: RegistrationComponent,
+  },
+  {
+    path: 'employeeModule',
+    loadChildren: () => import('./employee-module/employee.module').then(m => m.EmployeeModule),
   }
 ];
 
