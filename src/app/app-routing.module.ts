@@ -28,6 +28,10 @@ const routes: Routes = [
   {
     path: 'employeeModule',
     loadChildren: () => import('./employee-module/employee.module').then(m => m.EmployeeModule),
+  },
+  {
+    path: 'hrModule',
+    loadChildren: () => import('./hr-module/hr.module').then(h => h.HrModule),
   }
 ];
 

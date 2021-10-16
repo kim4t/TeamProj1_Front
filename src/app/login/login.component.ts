@@ -32,9 +32,9 @@ export class LoginComponent implements OnInit {
       // If the user logs in successfully, redirect to other pages upon user status: rejected, pending, or approved.
       // Otherwise, let the user stay in same page if it's invalid username or password. 
       if(result == "HR")
-        this.router.navigate(['/HR/homePage']);
+        this.router.navigate(['hrModule']);
       else if(result == "employee")
-        this.router.navigate(['/employee/homePage']);
+        this.router.navigate(['employeeModule']);
       else
         alert("Invalid Username or Password !");
     }
