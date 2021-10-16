@@ -1,1 +1,73 @@
 <h2>Employee Personal Information page</h2>
+<!-- NameSection -->
+<div>
+    <h3>Name Section</h3>
+    <p>avatar place holder </p>
+    <p>Name: {{info.nameSection.firstName}} {{info.nameSection.lastName}}</p>
+    <p>Date of Birth: {{info.nameSection.dob}}</p>
+    <p>Age: {{info.nameSection.age}}</p>
+    <p>Gender: {{info.nameSection.gender}}</p>
+    <p>SSN(last 4 digits): {{info.nameSection.ssn}}</p>
+    <button (click)="myWindow()">edit</button>
+</div>
+
+<!-- addressSection -->
+<div>
+    <h3>Address Section</h3>
+    <p>addressLine1: {{info.addressSection.addressLine1}}</p>
+    <p [hidden]="!info.addressSection.addressLine2">addressLine2: {{info.addressSection.addressLine2}}</p>
+    <p>city: {{info.addressSection.city}}</p>
+    <p>stateAbbr: {{info.addressSection.stateAbbr}}</p>
+    <p>stateName: {{info.addressSection.stateName}}</p>
+    <p>zipCode: {{info.addressSection.zipCode}}</p>
+    <button>edit</button>
+</div>
+
+<!-- contactSection -->
+<div>
+    <h3>contact Section</h3>
+    <p>email: {{info.contactSection.email}}</p>
+    <p>cellphone: {{info.contactSection.cellphone}}</p>
+    <p [hidden]="!info.contactSection.alternatePhone">alternatePhone: {{info.contactSection.alternatePhone}}</p>
+    <button>edit</button>
+</div>
+
+<!-- employeeSection -->
+<div>
+    <h3>contact Section</h3>
+    <p>Work Authorization: {{info.employeeSection.visaType}}</p>
+    <p [hidden]="!info.employeeSection.visaStartDate">visaStartDate: {{info.employeeSection.visaStartDate}}</p>
+    <p [hidden]="!info.employeeSection.visaEndDate">visaEndDate: {{info.employeeSection.visaEndDate}}</p>
+    <p>startDate: {{info.employeeSection.startDate}}</p>
+    <p>endDate: {{info.employeeSection.endDate}}</p>
+    <p>title: {{info.employeeSection.title}}</p>
+    <button>edit</button>
+</div>
+
+<!-- emergencyContactList -->
+<div>
+    <h3>Emergency Contact Section</h3>
+    <ul class="emergency-contact">
+        <li *ngFor="let contact of info.emergencyContactList">
+            Name: {{contact.firstName}} {{contact.lastName}}&nbsp;
+            Relationship: {{contact.relationship}}&nbsp;  
+            Cellphone: {{contact.cellphone}}&nbsp; 
+            Email: {{contact.email}}
+        </li>
+    </ul>
+    <button>edit</button>
+</div>
+
+<!-- personalDocumentList -->
+<div>
+    <h3>Personal Document Section</h3>
+    <ul class="personal-document">
+        <li *ngFor="let doc of info.personalDocumentList">
+            <i class="Small material-icons">insert_drive_file</i> &nbsp; 
+            {{doc.title}}&nbsp;
+            CreateDate: {{doc.createDate}}&nbsp;
+            <button (click)="filePreview(doc)">preview / download(inplement later)</button>
+        </li>
+    </ul>
+    <button>edit</button>
+</div>

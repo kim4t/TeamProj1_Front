@@ -1,10 +1,10 @@
-<h2>Welcome employee!</h2>
-<p>This will be a nav bar .... later</p>
-<br>
-<a routerLink="welcome"> To welcome page</a>
-<br>
-<a routerLink="info"> To Information page</a>
-<br>
-<a routerLink="house"> To House page</a>
+<div class="employee-mainpage">
+    <h2>Welcome employee!</h2>
 
-<router-outlet></router-outlet>
+    <button (click)="toWelcome()" type="button" class="btn">Welcome</button>
+    <button (click)="toInfo()" type="button" class="btn">Personal Information</button>
+    <button (click)="toVisa()" type="button" class="btn">Visa Status</button>
+    <button (click)="toHouse()" type="button" class="btn">Housing</button>
+
+    <router-outlet></router-outlet>
+</div>

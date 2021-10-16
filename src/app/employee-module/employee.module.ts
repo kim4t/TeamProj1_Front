@@ -6,6 +6,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeWelcomeComponent } from './employee-welcome/employee-welcome.component';
 import { EmployeePersonalInformationComponent } from './employee-personal-information/employee-personal-information.component';
 import { EmployeeHouseComponent } from './employee-house/employee-house.component';
+import { EmployeeVisaComponent } from './employee-visa/employee-visa.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EmployeeHouseComponent } from './employee-house/employee-house.componen
     EmployeeComponent,
     EmployeeWelcomeComponent,
     EmployeePersonalInformationComponent,
-    EmployeeHouseComponent
+    EmployeeHouseComponent,
+    EmployeeVisaComponent
   ],
   imports: [
     CommonModule,
