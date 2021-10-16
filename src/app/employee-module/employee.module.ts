@@ -7,7 +7,7 @@ import { EmployeeWelcomeComponent } from './employee-welcome/employee-welcome.co
 import { EmployeePersonalInformationComponent } from './employee-personal-information/employee-personal-information.component';
 import { EmployeeHouseComponent } from './employee-house/employee-house.component';
 import { EmployeeVisaComponent } from './employee-visa/employee-visa.component';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { EmployeeVisaComponent } from './employee-visa/employee-visa.component';
     CommonModule,
     RouterModule,
     EmployeeRoutingModule,
+    FormsModule
     
   ]
 })
