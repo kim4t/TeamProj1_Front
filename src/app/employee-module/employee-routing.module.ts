@@ -4,13 +4,31 @@ import { EmployeeComponent } from './employee.component';
 import { EmployeeWelcomeComponent } from './employee-welcome/employee-welcome.component';
 import { EmployeePersonalInformationComponent } from './employee-personal-information/employee-personal-information.component';
 import { EmployeeHouseComponent } from './employee-house/employee-house.component';
+import { EmployeeVisaComponent } from './employee-visa/employee-visa.component';
+import { EmployeeResolver } from './services/employee.resolver';
 const routes: Routes = [
   {
     path: '', component: EmployeeComponent,
     children: [
-      { path: 'welcome', component: EmployeeWelcomeComponent },
-      { path: 'info', component: EmployeePersonalInformationComponent },
-      { path: 'house', component: EmployeeHouseComponent },
+      {
+        path: 'welcome',
+        component: EmployeeWelcomeComponent
+      },
+      {
+        path: 'info',
+        component: EmployeePersonalInformationComponent,
+        resolve: {
+          empResolver: EmployeeResolver
+        }
+      },
+      {
+        path: 'house',
+        component: EmployeeHouseComponent
+      },
+      {
+        path: 'visa',
+        component: EmployeeVisaComponent
+      },
     ]
   }
 ];
