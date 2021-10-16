@@ -20,7 +20,7 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-profile.component';
-import { MatTableModule } from '@angular/material/table'  
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,9 @@ import { MatTableModule } from '@angular/material/table'
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatTableModule
+    Ng2SearchPipeModule,
+  
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
