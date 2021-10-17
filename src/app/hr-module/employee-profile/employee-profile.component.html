@@ -1,1 +1,35 @@
-<p>employee-profile works!</p>
+
+
+<div class="container mt-5">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+    </div>
+    <h3>Total Number Of Employee: {{totalNumber}}</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Employee ID</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Middle Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">SSN</th>
+          <th scope="col">Visa Start Date</th>
+          <th scope="col">Visa Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of dataSource | filter:filterTerm">
+          <td>{{d.employeeId}}</td>
+          <td>{{d.firstName}}</td>
+          <td>{{d.middleName}}</td>
+          <td>{{d.lastName}}</td>
+          <td>{{d.ssn}}</td>
+          <td>{{d.visaStartDate}}</td>
+          <td>{{d.visaStatus}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+

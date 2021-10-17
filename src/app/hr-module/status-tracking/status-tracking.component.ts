@@ -26,10 +26,9 @@ export class StatusTrackingComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) { }
 
-  originalDataSource;
+  
   dataSource;
-
-  displayedColumns: string[] = ['employeeId','firstName', 'middleName', 'lastName', 'status', 'visaEndDate', 'dayLeft'];
+  filterTerm: string;
 
   ngOnInit(): void {
     this.http.get<statusElementList>('http://localhost:8081/hrModule/statusTracking')
@@ -37,7 +36,6 @@ export class StatusTrackingComponent implements OnInit {
     {
       
       this.dataSource = result;
-      this.originalDataSource = result;
       console.log(this.dataSource)
       
     }
