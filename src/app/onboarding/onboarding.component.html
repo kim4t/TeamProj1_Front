@@ -1,68 +1,191 @@
 
-
 <div class="login-page">
-    
-  <app-file-upload></app-file-upload>
 
     <div class="form">
       <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost)" class="login-form" ngNativeValidate>
 
 
+        <!-- Email -->
+        <label for="userNameBox"><strong>Email</strong></label>
+        <input type="text" placeholder="*Email" required name="email" ngModel>
+        
         <!-- Name -->
         <!-- fname && lname are required. mname can be null-->
+        <label for="userNameBox"><strong>FirstName</strong></label>
         <input type="text" placeholder="*FirstName" required name="firstName" ngModel /> 
+        <label for="userNameBox"><strong>MiddleName</strong></label>
         <input type="text" placeholder="MiddleName" name="middleName" ngModel>
+        <label for="userNameBox"><strong>LastName</strong></label>
         <input type="text" placeholder="*LastName" required name="lastName" ngModel>
 
-         <!-- Email -->
-         <input type="text" placeholder="*Email" required name="email" ngModel>
 
         <!-- gender -->
+        <label for="userNameBox"><strong>Gender</strong></label>
         <input type="text" placeholder="*Gender" required name="gender" ngModel>
 
         <!-- Phone with validation-->
         <!-- CellPhone is required. AlternatePhone can be null-->
+        <label for="userNameBox"><strong>CellPhone</strong></label>
         <input type="tel" placeholder="*CellPhone" required name="cellphone" ngModel [pattern]="mobNumberPattern">
+        <label for="userNameBox"><strong>AlternatePhone</strong></label>
         <input type="tel" placeholder="AlternatePhone" name="alternatePhone" ngModel>
 
-        <!-- SSN-->
-        <input type="text" placeholder="*SSN" required name="ssn" ngModel>
-        
-
         <!-- Date of Birth -->
+        <label for="userNameBox"><strong>Date of Birth</strong></label>
         <input type="date" placeholder="*Date of Birth" required name="dob" ngModel>
+
+         <!-- avatar -->
+         <label for="avatar"><strong>Avatar</strong></label>
+         <app-file-upload></app-file-upload>
+
+        <!-- SSN-->
+        <label for="userNameBox"><strong>SSN</strong></label>
+        <input type="text" placeholder="*SSN" required name="ssn" ngModel>
+
+        <!-- avatar *********************************************** -->
 
 
         <!-- Address -->
         <!-- AddressLine1 is required. AddressLine2 can be null-->
+        <label for="userNameBox"><strong>Address Line1</strong></label>
         <input type="text" placeholder="*AddressLine1" required name="addressLine1" ngModel> 
+        <label for="userNameBox"><strong>Address Line2</strong></label>
         <input type="text" placeholder="AddressLine2" name="addressLine2" ngModel>
 
-        <!-- zip code with validation -->
-        <input type="text" placeholder="*Zip Code" required name="zipCode" ngModel pattern="[0-9]*">
- 
         <!-- City -->
+        <label for="userNameBox"><strong>City</strong></label>
         <input type="text" placeholder="*City" required name="city" ngModel>
 
         <!-- State -->
-        <input type="text" placeholder="*State" required name="stateAbbr" ngModel>
+        <label for="userNameBox"><strong>State Abbreviation</strong></label>
+        <input type="text" placeholder="*State Abbreviation" required name="stateAbbr" ngModel>
+        <label for="userNameBox"><strong>State Name</strong></label>
+        <input type="text" placeholder="*State Name" required name="stateName" ngModel>
+
+        <!-- zip code with validation -->
+        <label for="userNameBox"><strong>Zip Code</strong></label>
+        <input type="text" placeholder="*Zip Code" required name="zipCode" ngModel pattern="[0-9]*">
+ 
+        <!-- Car -->
 
         <!-- Visa -->
-        <input type="text" placeholder="*Visa Type" required name="visaType" ngModel>
+        <!-- Are you a citizen or permanent resident of the U.S? --> 
+        <label for="checkVisaType"><strong>Are you a citizen or permanent resident of the U.S?</strong></label> <br>
+
+        <!-- DropDwon-->
+        <select name="checkVisaType" [(ngModel)] = "checkVisaType">
+          <option Value="Yes">Yes</option>
+          <option Value="No">No</option>
+        </select> 
+
+         
+           <!-- <mat-checkbox name="checkVisaType" [ngSwitch]="check()" [(ngModel)] = "checkVisaType" >Yes</mat-checkbox>
+           <mat-checkbox name="checkVisaType" [(ngModel)] = "!checkVisaType" >No</mat-checkbox> <br> --> 
+        
+
+        <!-- If yes, choose either "Green Card" or "Citizen" --Check Box    -->      
+        <p [hidden] = "checkVisaType != 'Yes'">
+          <select name="visaType" [(ngModel)] = "visaType">
+            <option Value="citizen">Citizen</option>
+            <option Value="GreenCard">GreenCard</option>
+          </select>
+        </p>
+        
+        <!-- If no, “What is your work authorization?”(*, Dropdown: H1-B, L2, F1(CPT/OPT), H4, Other    -->
+        <p [hidden] = "checkVisaType != 'No'">
+          <select name="visaType" [(ngModel)] = "visaType">
+            <option Value="H1-B">H1-B</option>
+            <option Value="F1(CPT/OPT)">F1(CPT/OPT)</option>
+            <option Value="H4">H4</option>
+            <option Value="Other">Other</option>
+          </select>
+        </p>
+        <br>
+        <!-- If others,  input box for specifying the work authorization, start date and expiration date-->
+        <p [hidden] = "visaType != 'Other'">
+          <label for="userNameBox"><strong>Visa Start Date</strong></label>
+          <input type="date" placeholder="*Visa Start Date" required name="visaStartDate" ngModel>
+          <label for="userNameBox"><strong>Visa End Date</strong></label>
+          <input type="date" placeholder="*Visa End Date" required name="visaEndDate" ngModel>
+        </p>
+        <br>
+
+        <!-- Visa Document Path ************************************* -->
+        <label for="visaDocumentPath"><strong>Upload Your Visa Document</strong></label>
+        <app-file-upload></app-file-upload>
 
         <!-- DriverLicense -->
-        <input type="text" placeholder="DriverLicense (if Any)" name="driverlicense" ngModel>
+        <label for="checkDriverLicense"><strong>Do you have Driver License?</strong></label> <br>
+
+        <!-- DropDwon-->
+        <select name="checkDriverLicense" [(ngModel)] = "checkDriverLicense">
+          <option Value="Yes">Yes</option>
+          <option Value="No">No</option>
+        </select> 
+        <br>
+        <br>
+
+        <!-- Do you have a driver license -->
+        <!-- If yes, driver license number, expiration date, and upload a copy of drive license -->
+        <p [hidden] = "checkDriverLicense != 'Yes'">
+          <label for="driverLicenseNumber"><strong>Driver license number</strong></label>
+          <input type="text" placeholder="Driver license number" name="visaEndDate" ngModel>
+          <label for="expirationDate"><strong>Expiration Date</strong></label>
+          <input type="date" placeholder="Expiration Date" name="expirationDate" ngModel>
+          <label for="driverLicenseDocumentPath "><strong>Upload Your DriverLicense</strong></label>
+          <app-file-upload></app-file-upload>
+        </p>
+
+        <!-- driverLicenseExpirationDate  ************************************* -->
+        <!-- driver LicenseDocument Path  ************************************* -->
+
+
+        <!-- Reference Person ******************************************************* -->
+        <!-- Can only click it once ************************************************* -->
+        <button type="button" [disabled]="isDisabled" (click)="addReferencePerson()" style="margin-bottom: 15px;">Add Reference Person</button>
+        <div *ngFor="let contact of referencePerson;" >
+          <label for="firstNameRef"><strong>Ref. Person's First Name</strong></label>
+          <input [(ngModel)]="referencePerson[0].firstNameRef" placeholder="First Name" [ngModelOptions]="{standalone: true}">
+          <label for="lastNameRef"><strong>Ref. Person's Last Name</strong></label>
+          <input [(ngModel)]="referencePerson[0].lastNameRef" placeholder="Last Name" [ngModelOptions]="{standalone: true}">
+          <label for="middleNameRef"><strong>Ref. Person's Middle Name</strong></label>
+          <input [(ngModel)]="referencePerson[0].middleNameRef"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
+          <label for="cellphoneRef"><strong>Ref. Person's Cellphone</strong></label>
+          <input [(ngModel)]="referencePerson[0].cellphoneRef" placeholder="Cellphone" [ngModelOptions]="{standalone: true}">
+          <label for="emailRef"><strong>Ref. Person's E-mail</strong></label>
+          <input [(ngModel)]="referencePerson[0].emailRef" placeholder="E-mail" [ngModelOptions]="{standalone: true}">
+          <label for="relationshipRef"><strong>Ref. Person's Relationship</strong></label>
+          <input [(ngModel)]="referencePerson[0].relationshipRef" placeholder="Relationship" [ngModelOptions]="{standalone: true}">
+          <label for="addressLine1Ref"><strong>Ref. Person's Address Line 1</strong></label>
+          <input [(ngModel)]="referencePerson[0].addressLine1Ref" placeholder="Address Line1" [ngModelOptions]="{standalone: true}">
+          <label for="addressLine2Ref"><strong>Ref. Person's Address Line 2</strong></label>
+          <input [(ngModel)]="referencePerson[0].addressLine2Ref" placeholder="Address Line2" [ngModelOptions]="{standalone: true}">
+          <label for="cityRef"><strong>Ref. Person's City</strong></label>
+          <input [(ngModel)]="referencePerson[0].cityRef" placeholder="City" [ngModelOptions]="{standalone: true}">
+          <label for="stateAbbrRef"><strong>Ref. Person's State Abbreivation</strong></label>
+          <input [(ngModel)]="referencePerson[0].stateAbbrRef" placeholder="state Abbreviation" [ngModelOptions]="{standalone: true}">
+          <label for="stateNameRef"><strong>Ref. Person's State Name</strong></label>
+          <input [(ngModel)]="referencePerson[0].stateNameRef" placeholder="State Name" [ngModelOptions]="{standalone: true}">
+          <label for="zipCodeRef"><strong>Ref. Person's Zip Code</strong></label>
+          <input [(ngModel)]="referencePerson[0].zipCodeRef" placeholder="Zip Code" [ngModelOptions]="{standalone: true}">
+        </div>
+
 
         <!-- Emerygency Contact List* (at least one or multiple)-->
         <button type="button" (click)="addEmergencyContact()" style="margin-bottom: 15px;">Add Emerygency Contact</button>
-        
         <div *ngFor="let contact of emergencyContact;let index = index;trackBy:trackByIndex;" >
-          <input [(ngModel)]="emergencyContact[index].firstName" placeholder="First Name" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].lastName" placeholder="Last Name" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].middleName"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].cellphone" placeholder="cellphone" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].email" placeholder="email" [ngModelOptions]="{standalone: true}">
-          <input [(ngModel)]="emergencyContact[index].relationship" placeholder="relationship" [ngModelOptions]="{standalone: true}">
+          <label for="firstNameEmg"><strong>Emergency Contact First Name</strong></label>
+          <input [(ngModel)]="emergencyContact[index].firstNameEmg" placeholder="First Name" [ngModelOptions]="{standalone: true}">
+          <label for="lastNameEmg"><strong>Emergency Contact Last Name</strong></label>
+          <input [(ngModel)]="emergencyContact[index].lastNameEmg" placeholder="Last Name" [ngModelOptions]="{standalone: true}">
+          <label for="middleNameEmg"><strong>Emergency Contact Middle Name</strong></label>
+          <input [(ngModel)]="emergencyContact[index].middleNameEmg"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
+          <label for="cellphoneEmg"><strong>Emergency Contact Cellphone</strong></label>
+          <input [(ngModel)]="emergencyContact[index].cellphoneEmg" placeholder="cellphone" [ngModelOptions]="{standalone: true}">
+          <label for="emailEmg"><strong>Emergency Contact E-mail</strong></label>
+          <input [(ngModel)]="emergencyContact[index].emailEmg" placeholder="email" [ngModelOptions]="{standalone: true}">
+          <label for="relationshipEmg"><strong>Emergency Contact Relationship</strong></label>
+          <input [(ngModel)]="emergencyContact[index].relationshipEmg" placeholder="relationship" [ngModelOptions]="{standalone: true}">
         </div>
 
         <button type="submit">Submit</button>

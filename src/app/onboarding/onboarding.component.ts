@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';import { Form, FormGroup, NgFo
 import { ActivatedRoute } from '@angular/router';
 import { emergencyContact } from '../model/emergencyContact.model';
 import { onboarding } from '../model/onboarding.model';
+import { referencePerson } from '../model/referencePerson.model';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @Component({
   selector: 'app-onboarding',
@@ -14,36 +17,25 @@ export class OnboardingComponent implements OnInit {
   constructor(private route: ActivatedRoute, private http: HttpClient) { }
 
   emergencyContact: emergencyContact[] = [];
+  referencePerson: referencePerson[] = [];
+  isDisabled = false;
+  RefNumber = 0;
+  visaType= " ";
+  checkVisaType= "";
+  selected = -1;
+  checkDriverLicense = "";   
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
 
   ngOnInit(): void  { }
 
   onSubmit(form: NgForm)
   {
-      /** Send all the field data in On-Boarding Page as form-data type to backend  */
-    //for ( var key in form ) {
-    //  data.append(key, form[key]);
-    //}
-    // data.append('firstName', form['firstName']);
-    // data.append('lastName', form['lastName']);
-    // data.append('middleName', form['middleName']);
-    // data.append('gender', form['gender']);
-    // data.append('cellphone', form['cellphone']);
-    // data.append('alternatePhone', form['alternatePhone']);
-    // data.append('DOB', form['DOB']);
-    // data.append('SSN', form['SSN']);
-    // data.append('addressline1', form['addressline1']);
-    // data.append('addressline2', form['addressline2']);
-    // data.append('zipcode', form['zipcode']);
-    // data.append('city', form['city']);
-    // data.append('state', form['state']);
-    // data.append('visa', form['visa']);
-    // data.append('driverlicense', form['driverlicense']);
-    // data.append('emergencyContact', form['emergencyContact']);
+    
     let onboardingInfo: onboarding;
     onboardingInfo = form.value;
     onboardingInfo.emergencyContact = this.emergencyContact;
 
+    /*  Send file to backend as JSON data type */
     this.http.post('http://localhost:8081/employee/onboard ', onboardingInfo)
     .subscribe((result)=>{
       console.log(result);
@@ -54,12 +46,12 @@ export class OnboardingComponent implements OnInit {
   {
     // create new object of emergencyContact
     let e: emergencyContact = {
-      firstName: '',
-      lastName: '',
-      middleName: '',
-      cellphone: '',
-      email: '',
-      relationship: '',
+      firstNameEmg: '',
+      lastNameEmg: '',
+      middleNameEmg: '',
+      cellphoneEmg: '',
+      emailEmg: '',
+      relationshipEmg: '',
       index: 0
     };
 
@@ -67,6 +59,37 @@ export class OnboardingComponent implements OnInit {
     this.emergencyContact.push(e);
   }
 
+  addReferencePerson(): void 
+  {
+    // create new object of referencePerson
+    let r: referencePerson = {
+    firstNameRef: '',
+    lastNameRef: '',
+    middleNameRef: '',
+    cellphoneRef: '',
+    emailRef: '',
+    relationshipRef: '',
+    addressLine1Ref: '',
+    addressLine2Ref: '',
+    cityRef: '',
+    stateAbbrRef: '',
+    stateNameRef: '',
+    zipCodeRef : '',
+    index: 0
+    };
+
+    this.referencePerson.push(r);
+  
+    if(this.isDisabled)
+    {
+      alert("You Can Only Add One Reference Person !");
+    }
+    this.isDisabled = true;
+  }
+
+  check() {
+    console.log(this.checkVisaType);
+  }
   minusEmergencyContact(): void
   {
     //this.emergencyContact.pop(e);

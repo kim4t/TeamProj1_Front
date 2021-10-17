@@ -1,9 +1,9 @@
 export interface emergencyContact {
-    firstName: String;
-    lastName : String;
-    middleName : String;
-    cellphone : String;
-    email : String;
-    relationship : String;
+    firstNameEmg : String;
+    lastNameEmg : String;
+    middleNameEmg : String;
+    cellphoneEmg : String;
+    emailEmg  : String;
+    relationshipEmg  : String;
     index: number;
 }

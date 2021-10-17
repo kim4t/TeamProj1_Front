@@ -14,15 +14,7 @@ export class UploadFileService {
     const url = "https://teamproj1bucket.s3.us-east-2.amazonaws.com/" + fileName;
     data.append('file', file);
     data.append('url', url);
-    //https://teamproj1bucket.s3.us-east-2.amazonaws.com/'+this.file)
-    return this.https.post('http://localhost:8081/uploadFile', data, {responseType: 'text', withCredentials: true})
 
-    /*
-    const newRequest = new HttpRequest('POST', 'http://localhost:8081/uploadFile', data, {
-      reportProgress: true,
-      responseType: 'text'
-    });
-    return this.https.request(newRequest);
-    */
+    return this.https.post('http://localhost:8081/uploadFile', data, {responseType: 'text', withCredentials: true})
   }
 }

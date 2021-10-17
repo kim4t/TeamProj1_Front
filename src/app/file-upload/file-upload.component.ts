@@ -24,7 +24,8 @@ export class FileUploadComponent implements OnInit {
 
   upload() {
     this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+    this.uploadService.pushFileToStorage(this.currentFileUpload)
+    .subscribe(event => {
       //get the download url from backend
       this.downloadUrl = event;
       this.file = this.currentFileUpload.name;

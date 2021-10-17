@@ -20,6 +20,8 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-profile.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
