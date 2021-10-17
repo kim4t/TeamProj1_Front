@@ -21,6 +21,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-profile.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatTableModule } from '@angular/material/table'  
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
   
   
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
