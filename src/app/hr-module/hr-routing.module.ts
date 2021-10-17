@@ -5,6 +5,7 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { SendemailComponent } from '../sendemail/sendemail.component';
 import { VisaStatusManagementComponent } from './visa-status-management/visa-status-management.component';
 import { StatusTrackingComponent } from './status-tracking/status-tracking.component';
+import { ApplicationReviewComponent } from './application-review/application-review.component';
 const routes: Routes = [
 
   {
@@ -13,6 +14,7 @@ const routes: Routes = [
        { path: 'employeeProfile', component: EmployeeProfileComponent },
        { path: 'sendEmail', component: SendemailComponent },
        { path: 'statusTracking', component: StatusTrackingComponent },
+       { path: 'applicationReview', component: ApplicationReviewComponent }
     ]
   }
 
