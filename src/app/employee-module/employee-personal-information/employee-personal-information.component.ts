@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { EmployeeHttpService } from '../services/employee-http.service';
 import { DialogService } from 'src/app/Service/dialog.service';
 import { NgForm } from '@angular/forms';
+import { UploadFileService } from 'src/app/Service/upload-file.service';
 
 @Component({
   selector: 'app-employee-personal-information',
@@ -15,20 +16,26 @@ export class EmployeePersonalInformationComponent implements OnInit {
   info!: personalInfo;
   tempInfo!: personalInfo;
   ssn!: string;
+  selectedAvatar: File;
+  avatarBtn: string;
   edit = {
     editName: false,
     editAddress: false,
     editContact: false,
     editEmployee: false,
+    editEmergency: false,
+    editDocument: false,
   }
   constructor(private actRoute: ActivatedRoute,
     private http: HttpClient,
     private employeehttpService: EmployeeHttpService,
     private dialogService: DialogService,
+    private uploadService: UploadFileService
   ) { }
 
   //for name section
   editName() {
+    this.avatarBtn = "Upload avatar";
     this.tempInfo.nameSection = JSON.parse(JSON.stringify(this.info.nameSection));
     this.edit.editName = true;
 
@@ -40,7 +47,7 @@ export class EmployeePersonalInformationComponent implements OnInit {
       this.edit.editName = false;
       let timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
       this.info.nameSection.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
-      this.ssn = this.info.nameSection.ssn.substring(5);
+      this.ssn = this.info.nameSection.ssn.toString().substring(5);
     }, (err) => {
       console.log(err);
     }
@@ -57,6 +64,19 @@ export class EmployeePersonalInformationComponent implements OnInit {
     } else {
       this.edit.editName = false;
     }
+  }
+
+  selectAvatar(event: any) {
+    this.selectedAvatar = event.target.files.item(0);
+  }
+  uploadAvatar() {
+    this.uploadService.pushFileToStorage(this.selectedAvatar).subscribe(event => {
+      //get the download url from backend
+      this.tempInfo.nameSection.avatar = event;
+      this.avatarBtn = "Done";
+    }, err => {
+      console.log(err.message);
+    });
   }
 
   editAddress() {
@@ -140,6 +160,73 @@ export class EmployeePersonalInformationComponent implements OnInit {
     }
   }
 
+  editEmergencyContact() {
+    this.tempInfo.emergencyContactList = JSON.parse(JSON.stringify(this.info.emergencyContactList));
+    this.edit.editEmergency = true;
+  }
+  saveEmergencyContact() {
+    this.employeehttpService.update('emergency', this.tempInfo.emergencyContactList).subscribe((result) => {
+      console.log(result);
+      this.info.emergencyContactList = JSON.parse(JSON.stringify(this.tempInfo.emergencyContactList));
+      this.edit.editEmergency = false;
+    }, (err) => {
+      console.log(err);
+    }
+    )
+
+  }
+  cancelEmergencyContact(emergencyForm: NgForm) {
+    if (emergencyForm.dirty) {
+      this.dialogService.confirm("Are you sure to discard all your changes?").subscribe(
+        (res) => {
+          this.edit.editEmergency = !res;
+        }
+      );
+    } else {
+      this.edit.editEmergency = false;
+    }
+  }
+
+  editDocument() {
+    this.tempInfo.personalDocumentList = JSON.parse(JSON.stringify(this.info.personalDocumentList));
+    this.edit.editDocument = true;
+  }
+  saveDocument() {
+    this.employeehttpService.update('document', this.tempInfo.personalDocumentList).subscribe((result) => {
+      console.log(result);
+      this.info.personalDocumentList = JSON.parse(JSON.stringify(this.tempInfo.personalDocumentList));
+      this.edit.editDocument = false;
+    }, (err) => {
+      console.log(err);
+    }
+    )
+  }
+  cancelDocument(documentForm: NgForm) {
+    if (documentForm.dirty) {
+      this.dialogService.confirm("Are you sure to discard all your changes?").subscribe(
+        (res) => {
+          this.edit.editDocument = !res;
+        }
+      );
+    } else {
+      this.edit.editDocument = false;
+    }
+  }
+
+  uploadDocument(event: any, id: number) {
+
+    let doc = event.target.files.item(0);
+    this.uploadService.pushFileToStorage(doc).subscribe(event => {
+      //get the download url from backend
+      this.tempInfo.personalDocumentList[id].path = event;
+      //this.tempInfo.personalDocumentList[id].createDate = new Date(Date.now());
+      document.getElementById("uploadRes" + id).innerHTML = "Done";
+    }, err => {
+      console.log(err.message);
+    });
+  }
+
+
 
 
   filePreview(doc: personalDocument) {
@@ -157,11 +244,10 @@ export class EmployeePersonalInformationComponent implements OnInit {
     );
     let timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
     this.info.nameSection.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
-    this.ssn = this.info.nameSection.ssn.substring(5);
+    this.ssn = this.info.nameSection.ssn.toString().substring(5);
 
     this.info.personalDocumentList.sort(function (a, b) {
       return new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
     });
   }
-
 }

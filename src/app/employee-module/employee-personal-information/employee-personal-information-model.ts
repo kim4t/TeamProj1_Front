@@ -15,7 +15,7 @@ export interface nameSection {
     dob: Date,
     age: number,
     gender: string,
-    ssn: string,
+    ssn: String,
 }
 export interface addressSection {
     addressId: number,
