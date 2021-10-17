@@ -1,10 +1,9 @@
 
-
 <div class="container mt-5">
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
-    <h3>Total Number Of Employee: {{totalNumber}}</h3>
+  
     <table class="table">
       <thead class="thead-dark">
         <tr>
@@ -12,9 +11,9 @@
           <th scope="col">First Name</th>
           <th scope="col">Middle Name</th>
           <th scope="col">Last Name</th>
-          <th scope="col">SSN</th>
-          <th scope="col">Visa Start Date</th>
-          <th scope="col">Visa Status</th>
+          <th scope="col">Status</th>
+          <th scope="col">Visa End Date</th>
+          <th scope="col">Day Left</th>
         </tr>
       </thead>
       <tbody>
@@ -23,9 +22,9 @@
           <td>{{d.firstName}}</td>
           <td>{{d.middleName}}</td>
           <td>{{d.lastName}}</td>
-          <td>{{d.ssn}}</td>
-          <td>{{d.visaStartDate}}</td>
-          <td>{{d.visaStatus}}</td>
+          <td>{{d.status}}</td>
+          <td>{{d.visaEndDate}}</td>
+          <td>{{d.dayLeft}}</td>
         </tr>
       </tbody>
     </table>

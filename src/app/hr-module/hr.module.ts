@@ -4,17 +4,33 @@ import { RouterModule } from '@angular/router';
 import { HrRoutingModule } from './hr-routing.module';
 import { HrComponent } from './hr.component';
 import { VisaStatusManagementComponent } from './visa-status-management/visa-status-management.component';
+import { StatusTrackingComponent } from './status-tracking/status-tracking.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SearchFilterComponent } from './search-filter/search-filter.component'; 
+import { FormsModule } from '@angular/forms'; 
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ApplicationReviewComponent } from './application-review/application-review.component';
 
 
 @NgModule({
   declarations: [
     HrComponent,
-    VisaStatusManagementComponent
+    VisaStatusManagementComponent,
+    StatusTrackingComponent,
+    SearchFilterComponent,
+    ApplicationReviewComponent
   ],
   imports: [
+   
     CommonModule,
     RouterModule,
-    HrRoutingModule
+    HrRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    Ng2SearchPipeModule,
+    
+    
   ]
+  
 })
 export class HrModule { }

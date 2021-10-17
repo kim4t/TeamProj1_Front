@@ -10,11 +10,12 @@ export interface nameSection {
     personId: number,
     firstName: string,
     lastName: string,
+    middleName: string,
     avatar: string,
     dob: Date,
     age: number,
     gender: string,
-    ssn: number,
+    ssn: String,
 }
 export interface addressSection {
     addressId: number,

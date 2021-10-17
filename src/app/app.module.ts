@@ -20,7 +20,10 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-profile.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatTableModule } from '@angular/material/table'  
+import { CookieService } from 'ngx-cookie-service';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -47,9 +50,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     HttpClientModule,
     FormsModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    Ng2SearchPipeModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
