@@ -28,8 +28,6 @@ export class StatusTrackingComponent implements OnInit {
 
   
   dataSource;
-  displayedColumns: string[] = ['employeeId','firstName', 'middleName', 'lastName', 'status', 'visaEndDate', 'dayLeft'];
-
   filterTerm: string;
 
   ngOnInit(): void {
