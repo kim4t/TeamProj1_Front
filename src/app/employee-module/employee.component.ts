@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { EmployeeHttpService } from './services/employee-http.service';
 
 @Component({
   selector: 'app-employee',
@@ -8,9 +10,23 @@ import { Router } from '@angular/router';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router, private cookieService: CookieService, private employeeHttpService: EmployeeHttpService) { }
+  userName!: string;
   ngOnInit(): void {
+    this.userName = this.cookieService.get('userName');
+  }
+
+  logout(): void {
+    this.employeeHttpService.logout().subscribe(
+      (res) => {
+        console.log(res);
+        this.cookieService.delete('userName', '/');
+        this.router.navigate(['/']);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   toWelcome(): void {

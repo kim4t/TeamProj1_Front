@@ -1,17 +1,17 @@
 <h2>Employee Personal Information page</h2>
 <!-- NameSection -->
 <div>
-    <h3>Name Section</h3>
+    <h3 [hidden]="edit.editName">Name Section</h3>
+    <h3 [hidden]="!edit.editName">Edit Name</h3>
     <img src="assets/icon/default-avatar.jpeg" width="40" height="40">
-    <form #nameForm="ngForm">
-        <p [hidden]="edit.editName">Name: {{info.nameSection.firstName}} {{info.nameSection.middleName}}
-            {{info.nameSection.lastName}}</p>
-        <p [hidden]="edit.editName">Date of Birth: {{info.nameSection.dob}}</p>
-        <p [hidden]="edit.editName">Age: {{info.nameSection.age}}</p>
-        <p [hidden]="edit.editName">Gender: {{info.nameSection.gender}}</p>
-        <p [hidden]="edit.editName">SSN(last 4 digits): {{ssn}}</p>
+    <p [hidden]="edit.editName">Name: {{info.nameSection.firstName}} {{info.nameSection.middleName}}
+        {{info.nameSection.lastName}}</p>
+    <p [hidden]="edit.editName">Date of Birth: {{info.nameSection.dob}}</p>
+    <p [hidden]="edit.editName">Age: {{info.nameSection.age}}</p>
+    <p [hidden]="edit.editName">Gender: {{info.nameSection.gender}}</p>
+    <p [hidden]="edit.editName">SSN(last 4 digits): {{ssn}}</p>
 
-        <p hidden><input type="text" name="personId" [(ngModel)]="tempInfo.nameSection.personId" required></p>
+    <form #nameForm="ngForm">
         <p [hidden]="!edit.editName">
             <label for="firstName">First Name: </label>
             <input type="text" name="firstName" [(ngModel)]="tempInfo.nameSection.firstName" required>
@@ -22,7 +22,7 @@
         </p>
         <p [hidden]="!edit.editName">
             <label for="middleName">Middle Name: </label>
-            <input type="text" name="middleName" [(ngModel)]="tempInfo.nameSection.middleName" required>
+            <input type="text" name="middleName" [(ngModel)]="tempInfo.nameSection.middleName">
         </p>
         <p [hidden]="!edit.editName">
             <label for="dob">Date of Birth: </label>
@@ -38,48 +38,144 @@
         </p>
         <p [hidden]="!edit.editName">
             <label for="ssn">SSN: </label>
-            <input type="text" name="ssn" [(ngModel)]="tempInfo.nameSection.ssn" required>
+            <input type="number" name="ssn" [(ngModel)]="tempInfo.nameSection.ssn" required>
         </p>
         <p [hidden]="!edit.editName">upload avatar (implement later)</p>
-        <button [hidden]="edit.editName" (click)="editName(nameForm)">Edit</button>
-        <button [hidden]="!edit.editName" (click)="saveName(nameForm)">Save</button>
+        <button [hidden]="edit.editName" (click)="editName()">Edit</button>
+        <button [hidden]="!edit.editName" (click)="saveName()" [disabled]= "!nameForm.valid">Save</button>
         <button [hidden]="!edit.editName" (click)="cancelName(nameForm)">Cancel</button>
     </form>
 </div>
+<br><br>
 
 <!-- addressSection -->
 <div>
-    <h3>Address Section</h3>
-    <p>Address Line1: {{info.addressSection.addressLine1}}</p>
-    <p [hidden]="!info.addressSection.addressLine2">Address Line2: {{info.addressSection.addressLine2}}</p>
-    <p>City: {{info.addressSection.city}}</p>
-    <p>State Abbreviation: {{info.addressSection.stateAbbr}}</p>
-    <p>State Name: {{info.addressSection.stateName}}</p>
-    <p>Zip Code: {{info.addressSection.zipCode}}</p>
-    <button>Edit</button>
+    <h3 [hidden]="edit.editAddress">Address Section</h3>
+    <h3 [hidden]="!edit.editAddress">Edit Address</h3>
+    <p [hidden]="edit.editAddress">Address Line1: {{info.addressSection.addressLine1}}</p>
+    <p [hidden]="!info.addressSection.addressLine2 || edit.editAddress">Address Line2:
+        {{info.addressSection.addressLine2}}</p>
+    <p [hidden]="edit.editAddress">City: {{info.addressSection.city}}</p>
+    <p [hidden]="edit.editAddress">State Abbreviation: {{info.addressSection.stateAbbr}}</p>
+    <p [hidden]="edit.editAddress">State Name: {{info.addressSection.stateName}}</p>
+    <p [hidden]="edit.editAddress">Zip Code: {{info.addressSection.zipCode}}</p>
+    <form #addressForm="ngForm">
+        <p [hidden]="!edit.editAddress">
+            <label for="addressLine1">Address Line1: </label>
+            <input type="text" name="addressLine1" [(ngModel)]="tempInfo.addressSection.addressLine1" required>
+        </p>
+        <p [hidden]="!edit.editAddress">
+            <label for="addressLine2">Address Line2: </label>
+            <input type="text" name="addressLine2" [(ngModel)]="tempInfo.addressSection.addressLine2">
+        </p>
+        <p [hidden]="!edit.editAddress">
+            <label for="city">City: </label>
+            <input type="text" name="city" [(ngModel)]="tempInfo.addressSection.city" required>
+        </p>
+        <p [hidden]="!edit.editAddress">
+            <label for="stateAbbr">State Abbreviation: </label>
+            <input type="text" name="stateAbbr" [(ngModel)]="tempInfo.addressSection.stateAbbr" required>
+        </p>
+        <p [hidden]="!edit.editAddress">
+            <label for="stateName">State Name: </label>
+            <input type="text" name="stateName" [(ngModel)]="tempInfo.addressSection.stateName" required>
+        </p>
+        <p [hidden]="!edit.editAddress">
+            <label for="zipCode">Zip Code: </label>
+            <input type="text" name="zipCode" [(ngModel)]="tempInfo.addressSection.zipCode" required>
+        </p>
+    </form>
+    <button [hidden]="edit.editAddress" (click)="editAddress()">Edit</button>
+    <button [hidden]="!edit.editAddress" (click)="saveAddress()" [disabled]= "!addressForm.valid">Save</button>
+    <button [hidden]="!edit.editAddress" (click)="cancelAddress(addressForm)">Cancel</button>
 </div>
+<br><br>
 
 <!-- contactSection -->
 <div>
-    <h3>Contact Section</h3>
-    <p>Email: {{info.contactSection.email}}</p>
-    <p>Cellphone: {{info.contactSection.cellphone}}</p>
-    <p [hidden]="!info.contactSection.alternatePhone">Alternate Phone: {{info.contactSection.alternatePhone}}</p>
-    <button>edit</button>
+    <h3 [hidden]="edit.editContact">Contact Section</h3>
+    <h3 [hidden]="!edit.editContact">Edit Contact</h3>
+    <p [hidden]="edit.editContact">Email: {{info.contactSection.email}}</p>
+    <p [hidden]="edit.editContact">Cellphone: {{info.contactSection.cellphone}}</p>
+    <p [hidden]="!info.contactSection.alternatePhone || edit.editContact">Alternate Phone: {{info.contactSection.alternatePhone}}</p>
+    
+    <form #contactForm="ngForm">
+        <p [hidden]="!edit.editContact">
+            <label for="email">Email: </label>
+            <input type="text" name="email" [(ngModel)]="tempInfo.contactSection.email" disabled>
+        </p>
+        <p [hidden]="!edit.editContact">
+            <label for="cellphone">Cellphone: </label>
+            <input type="text" name="cellphone" [(ngModel)]="tempInfo.contactSection.cellphone" required>
+        </p>
+        <p [hidden]="!edit.editContact">
+            <label for="alternatePhone">Alternate Phone: </label>
+            <input type="text" name="alternatePhone" [(ngModel)]="tempInfo.contactSection.alternatePhone">
+        </p>
+    </form>
+    <button [hidden]="edit.editContact" (click)="editContact()">Edit</button>
+    <button [hidden]="!edit.editContact" (click)="saveContact()" [disabled]= "!contactForm.valid">Save</button>
+    <button [hidden]="!edit.editContact" (click)="cancelContact(contactForm)">Cancel</button>
 </div>
-
+<br><br>
 <!-- employeeSection -->
 <div>
-    <h3>Contact Section</h3>
-    <p>Work Authorization: {{info.employeeSection.visaType}}</p>
-    <p [hidden]="!info.employeeSection.visaStartDate">Visa Start Date: {{info.employeeSection.visaStartDate}}</p>
-    <p [hidden]="!info.employeeSection.visaEndDate">Visa End Date: {{info.employeeSection.visaEndDate}}</p>
-    <p>Start Date: {{info.employeeSection.startDate}}</p>
-    <p>End Date: {{info.employeeSection.endDate}}</p>
-    <p>Title: {{info.employeeSection.title}}</p>
-    <button>Edit</button>
-</div>
+    <h3 [hidden]="edit.editEmployee">Employment Section</h3>
+    <h3 [hidden]="!edit.editEmployee">Edit Employment</h3>
+    <p [hidden]="edit.editEmployee">Work Authorization: {{info.employeeSection.visaType}}</p>
+    <p [hidden]="!info.employeeSection.visaStartDate || editEmployee">Visa Start Date: {{info.employeeSection.visaStartDate}}</p>
+    <p [hidden]="!info.employeeSection.visaEndDate || editEmployee">Visa End Date: {{info.employeeSection.visaEndDate}}</p>
+    <p [hidden]="edit.editEmployee">Start Date: {{info.employeeSection.startDate}}</p>
+    <p [hidden]="edit.editEmployee">End Date: {{info.employeeSection.endDate}}</p>
+    <p [hidden]="edit.editEmployee">Title: {{info.employeeSection.title}}</p>
 
+
+    <form #employeeForm="ngForm">
+        <p [hidden]="!edit.editEmployee">
+            <label for="visaType">Work Authorization: </label>
+            <select name="visaType" [(ngModel)]="tempInfo.employeeSection.visaType">
+                <option Value="Green Card">Green Card</option>
+                <option Value="Citizen">Citizen</option>
+                <option Value="H1-B">H1-B</option>
+                <option Value="L2">L2</option>
+                <option Value="F1(CPT)">F1(CPT)</option>
+                <option Value="F1(OPT)">F1(OPT)</option>
+                <option Value="H4">H4</option>
+                <option Value="other">other</option>
+            </select>
+        </p>
+        <p [hidden] = "tempInfo.employeeSection.visaType != 'other'">
+            <label for="otherVisaType">Other: </label>
+            <input type="text" name="otherVisaType" ngModel>
+        </p>
+
+
+        <p [hidden]="!edit.editEmployee">
+            <label for="visaStartDate">Visa Start Date: </label>
+            <input type="date" name="visaStartDate" [(ngModel)]="tempInfo.employeeSection.visaStartDate">
+        </p>
+        <p [hidden]="!edit.editEmployee">
+            <label for="visaEndDate">Visa End Date: </label>
+            <input type="date" name="visaEndDate" [(ngModel)]="tempInfo.employeeSection.visaEndDate">
+        </p>
+        <p [hidden]="!edit.editEmployee">
+            <label for="startDate">Start Date: </label>
+            <input type="date" name="startDate" [(ngModel)]="tempInfo.employeeSection.startDate">
+        </p>
+        <p [hidden]="!edit.editEmployee">
+            <label for="endDate">End Date: </label>
+            <input type="date" name="endDate" [(ngModel)]="tempInfo.employeeSection.endDate">
+        </p>
+        <p [hidden]="!edit.editEmployee">
+            <label for="title">Title: </label>
+            <input type="text" name="title" [(ngModel)]="tempInfo.employeeSection.title">
+        </p>
+    </form>
+    <button [hidden]="edit.editEmployee" (click)="editEmployee()">Edit</button>
+    <button [hidden]="!edit.editEmployee" (click)="saveEmployee(employeeForm)" [disabled]= "!employeeForm.valid">Save</button>
+    <button [hidden]="!edit.editEmployee" (click)="cancelEmployee(employeeForm)">Cancel</button>
+</div>
+<br><br>
 <!-- emergencyContactList -->
 <div>
     <h3>Emergency Contact Section</h3>

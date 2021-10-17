@@ -1,5 +1,6 @@
 <div class="employee-mainpage">
-    <h2>Welcome employee!</h2>
+    
+    <h2>Welcome {{userName}}! <button (click)="logout()">log out</button></h2> 
 
     <button (click)="toWelcome()" type="button" class="btn">Welcome</button>
     <button (click)="toInfo()" type="button" class="btn">Personal Information</button>

@@ -21,6 +21,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { EmployeeProfileComponent } from './hr-module/employee-profile/employee-profile.component';
 import { MatTableModule } from '@angular/material/table'  
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { MatTableModule } from '@angular/material/table'
     MatIconModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
