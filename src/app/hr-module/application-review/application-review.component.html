@@ -1,0 +1,26 @@
+
+<div class="container mt-5">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+    </div>
+  
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Last Modifed Date</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of dataSource | filter:filterTerm">
+          <td>{{d.lastModifedDate}}</td>
+          <td>{{d.type}}</td>
+          <td>{{d.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+

@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SearchFilterComponent } from './search-filter/search-filter.component'; 
 import { FormsModule } from '@angular/forms'; 
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ApplicationReviewComponent } from './application-review/application-review.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HrComponent,
     VisaStatusManagementComponent,
     StatusTrackingComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    ApplicationReviewComponent
   ],
   imports: [
    
