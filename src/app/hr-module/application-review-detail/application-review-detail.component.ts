@@ -88,4 +88,22 @@ export class ApplicationReviewDetailComponent implements OnInit {
      this.http.post<applicationFormDetail>('http://localhost:8081/hrModule/applicationReviewDetail', data, {responseType: 'json', withCredentials: true})
      .subscribe((result) => { this.dataSource = result;  console.log(this.dataSource)})
   }
+
+  approve(){
+    let data = new FormData();
+    data.append('employeeId', this.employeeId)
+    data.append('status','completed')
+    data.append('comment','')
+    this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
+    .subscribe((result) => {})
+  }
+
+  reject(){
+    let data = new FormData();
+    data.append('employeeId', this.employeeId)
+    data.append('status','rejected')
+    data.append('comment','')
+    this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
+    .subscribe((result) => {})
+  }
 }
