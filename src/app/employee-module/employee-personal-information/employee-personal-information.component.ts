@@ -227,8 +227,6 @@ export class EmployeePersonalInformationComponent implements OnInit {
   }
 
 
-
-
   filePreview(doc: personalDocument) {
     window.open(doc.path, "_blank");
     console.log(doc);
