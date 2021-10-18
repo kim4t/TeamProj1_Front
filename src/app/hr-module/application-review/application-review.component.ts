@@ -26,7 +26,8 @@ export class ApplicationReviewComponent implements OnInit {
 
   dataSource;
   filterTerm: string;
-
+  employeeId: number;
+  path: String;
   ngOnInit(): void {
     this.http.get<applicationForm>('http://localhost:8081/hrModule/applicationReview')
     .subscribe((result) =>
@@ -37,6 +38,18 @@ export class ApplicationReviewComponent implements OnInit {
       
     }
     )
+  }
+
+  onSubmit(form: any)
+  {
+    
+    this.router.navigate(['/hrModule/applicationReviewDetail'],{ queryParams: { employeeId: this.employeeId } });    
+
+  }
+
+  setEmployeeId(employeeId){
+    this.employeeId = employeeId
+
   }
 
   //TODO: filter applicationForm only for onboarding and F1
