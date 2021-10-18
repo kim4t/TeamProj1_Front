@@ -3,24 +3,29 @@
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
-  
+    <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
     <table class="table">
       <thead class="thead-dark">
         <tr>
+          <th scope="col">Id</th>
           <th scope="col">Last Modifed Date</th>
           <th scope="col">Type</th>
           <th scope="col">Status</th>
+          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let d of dataSource | filter:filterTerm">
+          <td>{{d.employeeId}}</td>
           <td>{{d.lastModifedDate}}</td>
           <td>{{d.type}}</td>
           <td>{{d.status}}</td>
+          <td> <button mat-raised-button type="submit" (click) = "setEmployeeId(d.employeeId)" >Detail</button></td>
         </tr>
       </tbody>
     </table>
+  </form>
   </div>
 
 
-
+  

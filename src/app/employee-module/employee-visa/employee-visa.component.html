@@ -1,1 +1,85 @@
-<h2>Employee visa page</h2>
+<h2>Employee Visa Page</h2>
+
+<!--0Not OPT -->
+<div [hidden]="stage != 0">Your visa status is not OPT or OPT STEM
+    <p>Or upload you OPT Receipt</p>
+    <input type="file" name="OPT Receipt" (change)="selectOPTReceipt($event)" placeholder="upload OPT Receipt" ngModel>
+    <button [disabled]="!selectedFile" (click)="uploadFile(0)">upload OPT Receipt</button>
+    <span id="uploadRes0"></span>
+</div>
+
+<div class="section" [hidden]="stage == 0">
+    <p [style.color]="stage == 1 ? 'red' : 'black'">STEP 1. OPT Receipt </p>
+    <p [style.color]="stage == 2 ? 'red' : 'black'">STEP 2. OPT EAD </p>
+    <p [style.color]="stage == 3 ? 'red' : 'black'">STEP 3. I-983 </p>
+    <p [style.color]="stage == 4 ? 'red' : 'black'">STEP 4. I-20 </p>
+    <p [style.color]="stage == 5 ? 'red' : 'black'">STEP 5. OPT STEM Receipt </p>
+    <p [style.color]="stage == 6 ? 'red' : 'black'">STEP 6. OPT STEM EAD </p>
+</div>
+<br><br>
+<div class="section">
+    <h2 [hidden]="stage == 0">Next step</h2>
+    <!--1 For OPT Receipt -->
+    <div [hidden]="stage != 1">
+        <p>Please upload your OPT EAD</p>
+
+        <input type="file" name="OPTEAD" (change)="selectOPTEAD($event)" placeholder="upload OPT EAD" ngModel>
+        <button [disabled]="!selectedFile" (click)="uploadFile(1)">upload OPT EAD</button>
+        <span id="uploadRes1"></span>
+    </div>
+
+    <!--2 For OPT EAD -->
+    <div [hidden]="stage != 2">
+        <!-- less than 100 days before the expiration date-->
+        <p [hidden]="!needInform">Please download and fill your I-983 form</p>
+        <!-- after upload-->
+        <p [hidden]="!data.visaStage.uploadedI983">Waiting for HR to approve and sign I-983</p>
+        <button>download empty template</button>
+        <button>download sample template</button>
+        <p>
+            <input type="file" name="I-983" (change)="selectI983($event)" placeholder="upload completed I-983" ngModel>
+            <button [disabled]="!selectedFile" (click)="uploadFile(2)">upload completed I-983</button>
+            <span id="uploadRes2"></span>
+        </p>
+    </div>
+
+    <!--3 For I-983 -->
+    <div [hidden]="stage != 3">
+        <p>Please send the I-983 with all necessary documents to your school and upload the new I-20</p>
+        <input type="file" name="I-20" (change)="selectI20($event)" placeholder="upload I-20" ngModel>
+        <button [disabled]="!selectedFile" (click)="uploadFile(3)">upload I-20</button>
+        <span id="uploadRes3"></span>
+    </div>
+
+    <!--4 For I-20 -->
+    <div [hidden]="stage != 4">
+        <p>Please upload your OPT STEM Receipt</p>
+        <input type="file" name="OPT STEM Receipt" (change)="selectSTEMReceipt($event)"
+            placeholder="upload OPT STEM Receipt" ngModel>
+        <button [disabled]="!selectedFile" (click)="uploadFile(4)">upload OPT STEM Receipt</button>
+        <span id="uploadRes4"></span>
+    </div>
+
+    <!--5 For OPT STEM Receipt-->
+    <div [hidden]="stage != 5">
+        <p>Please upload your OPT STEM EAD</p>
+        <input type="file" name="OPT STEM EAD" (change)="selectOPTSTEMEAD($event)" placeholder="upload OPT STEM EAD"
+            ngModel>
+        <button [disabled]="!selectedFile" (click)="uploadFile(5)">upload OPT STEM EAD</button>
+        <span id="uploadRes5"></span>
+    </div>
+
+</div>
+<br><br>
+<div [hidden]="stage == 0" class="section">
+    <h2>My files</h2>
+    <ul class="personal-document">
+        <li *ngFor="let doc of data.visaDocumentList; index as i">
+            <i class="Small material-icons">insert_drive_file</i> &nbsp;
+            {{doc.title}}&nbsp;
+            CreateDate: {{doc.createDate}}&nbsp;
+            <button (click)="filePreview(doc)">download</button>
+        </li>
+    </ul>
+</div>
+<br><br>
