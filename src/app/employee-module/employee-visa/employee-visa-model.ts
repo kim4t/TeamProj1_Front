@@ -7,6 +7,9 @@ export interface visaStage {
     awfId: number,
     status: string,
     type: string,
+    visaEndDate: Date,
+    uploadedI983: boolean,
+
 }
 export interface sampleDocument {
     type: string,

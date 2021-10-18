@@ -15,7 +15,6 @@
     <p [style.color]="stage == 4 ? 'red' : 'black'">STEP 4. I-20 </p>
     <p [style.color]="stage == 5 ? 'red' : 'black'">STEP 5. OPT STEM Receipt </p>
     <p [style.color]="stage == 6 ? 'red' : 'black'">STEP 6. OPT STEM EAD </p>
-    <button>update status</button>
 </div>
 <br><br>
 <div class="section">
@@ -32,9 +31,9 @@
     <!--2 For OPT EAD -->
     <div [hidden]="stage != 2">
         <!-- less than 100 days before the expiration date-->
-        <p>Please download and fill your I-983 form</p>
+        <p [hidden]="!needInform">Please download and fill your I-983 form</p>
         <!-- after upload-->
-        <p>Waiting for HR to approve and sign I-983</p>
+        <p [hidden]="!data.visaStage.uploadedI983">Waiting for HR to approve and sign I-983</p>
         <button>download empty template</button>
         <button>download sample template</button>
         <p>
