@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UploadFileService } from '../Service/upload-file.service';
 
 @Component({
@@ -8,8 +8,10 @@ import { UploadFileService } from '../Service/upload-file.service';
 })
 export class FileUploadComponent implements OnInit {
 
-  selectedFiles!: FileList;
-  currentFileUpload!: File;
+  selectedFile!: File;
+
+  @Output()
+  selectedFileEvt = new EventEmitter<File>();
   file!: string;
   downloadUrl: string;
 
@@ -22,18 +24,20 @@ export class FileUploadComponent implements OnInit {
     window.open(this.downloadUrl);
   }
 
-  upload() {
-    this.currentFileUpload = this.selectedFiles.item(0);
-    this.uploadService.pushFileToStorage(this.currentFileUpload)
-    .subscribe(event => {
-      //get the download url from backend
-      this.downloadUrl = event;
-      this.file = this.currentFileUpload.name;
-    }, err => {
-      console.log(err.message);
-    });
-  }
+  // upload() {
+  //   this.currentFileUpload = this.selectedFiles.item(0);
+  //   this.uploadService.pushFileToStorage(this.currentFileUpload)
+  //   .subscribe(event => {
+  //     //get the download url from backend
+  //     this.downloadUrl = event;
+  //     this.file = this.currentFileUpload.name;
+  //   }, err => {
+  //     console.log(err.message);
+  //   });
+  // }
+  
   selectFile(event: any) {
-    this.selectedFiles = event.target.files;
+    this.selectedFile = event.target.files.item(0);
+    this.selectedFileEvt.emit(this.selectedFile);
   }
 }

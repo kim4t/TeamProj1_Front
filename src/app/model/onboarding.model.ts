@@ -1,4 +1,5 @@
 import { emergencyContact } from "./emergencyContact.model";
+import { referencePerson } from "./referencePerson.model";
 
 export interface onboarding {
     firstName: String;
@@ -18,4 +19,5 @@ export interface onboarding {
     visaType: String;
     driverlicense: String;
     emergencyContact: emergencyContact[];
+    referencePerson: referencePerson;
 }

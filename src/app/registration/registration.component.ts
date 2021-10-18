@@ -48,9 +48,9 @@ export class RegistrationComponent implements OnInit {
       // If the result == Succeed, redirect the user to On-boarding page.
       // Otherwise, show the error box and let the user stay in the same page.
       if(result == "Succeed")
-        this.router.navigate(['/employee/on-boarding']);
+        this.router.navigate(['/employee/on-boarding'], { queryParams: {email: this.email}});
       else if(result == "Exist User")
-      this.router.navigate(['']);
+        this.router.navigate(['']);
       else
         alert("Stay here because " + result);
     }

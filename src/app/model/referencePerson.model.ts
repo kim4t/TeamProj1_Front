@@ -1,4 +1,4 @@
-export interface referencePerson {
+export class referencePerson {
     firstNameRef : String;
     lastNameRef : String;
     middleNameRef : String;
