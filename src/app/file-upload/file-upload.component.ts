@@ -14,6 +14,14 @@ export class FileUploadComponent implements OnInit {
   selectedFileEvt = new EventEmitter<File>();
   file!: string;
   downloadUrl: string;
+  currentFileUpload!: File;
+
+  selectedFiles!: FileList;
+  
+  // file!: string;
+  // downloadUrl: string;
+  // selectedFileEvt = new EventEmitter<File>();
+  
 
   constructor(private uploadService: UploadFileService) { }
 
@@ -24,17 +32,17 @@ export class FileUploadComponent implements OnInit {
     window.open(this.downloadUrl);
   }
 
-  // upload() {
-  //   this.currentFileUpload = this.selectedFiles.item(0);
-  //   this.uploadService.pushFileToStorage(this.currentFileUpload)
-  //   .subscribe(event => {
-  //     //get the download url from backend
-  //     this.downloadUrl = event;
-  //     this.file = this.currentFileUpload.name;
-  //   }, err => {
-  //     console.log(err.message);
-  //   });
-  // }
+  upload() {
+    this.currentFileUpload = this.selectedFiles.item(0);
+    this.uploadService.pushFileToStorage(this.currentFileUpload)
+    .subscribe(event => {
+      //get the download url from backend
+      this.downloadUrl = event;
+      this.file = this.currentFileUpload.name;
+    }, err => {
+      console.log(err.message);
+    });
+  }
   
   selectFile(event: any) {
     this.selectedFile = event.target.files.item(0);
