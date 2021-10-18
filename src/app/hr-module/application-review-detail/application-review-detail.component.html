@@ -1,6 +1,6 @@
 <div class="section">
     
-       
+        <h1>Detail</h1>
         <p>Name: {{dataSource.firstName}} {{dataSource.middleName}} {{dataSource.lastName}}</p>
         <p>Date of Birth: {{dataSource.dob}}</p>
         <p>Gender: {{dataSource.gender}}</p>
@@ -20,6 +20,8 @@
         <p>DriverLicense: {{dataSource.driverLicense}}</p>
         <p>DriverLicenseExpirationDate: {{dataSource.driverLicenseExpirationDate}}</p>
         <p>DriverLicenseDocumentPath: {{dataSource.driverLicenseDocumentPath}}</p>
+
+        <h1>Reference Contact</h1>
         <p>Reference Name: {{dataSource.firstNameRef}} {{dataSource.middleNameRef}} {{dataSource.cellphoneRef}}</p>
         <p>Reference Cellphone: {{dataSource.cellphoneRef}}</p>
         <p>Reference Email: {{dataSource.emailRef}}</p>
@@ -30,7 +32,25 @@
         <p>Reference StateAbbr: {{dataSource.stateAbbrRef}}</p>
         <p>Reference StateName: {{dataSource.stateNameRef}}</p>
         <p>Reference ZipCode: {{dataSource.zipCodeRe}}</p>
-       
+
+        <h1>Emergency Contact</h1>
+        <div *ngFor="let e of dataSource.emergencyContact">
+           <p>Name: {{e.firstName}} {{e.middleName}} {{e.lastName}}</p>
+           <p>CellPhone: {{e.cellPhone}}</p>
+           <p>Email: {{e.email}}</p>
+           <p>RelationShip: {{e.relationship}}</p>
+           <p>---------------------------------</p>
+        </div>
+
+        <form class="example-form">
+              
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Leave a comment</mat-label>
+                  <textarea matInput placeholder="..." name="comment" [(ngModel)]="comment"></textarea>
+                </mat-form-field>
+              </form>
+
+        
         <button  (click) = "approve()">Approve</button>
         <button  (click) = "reject()">Reject</button>
         

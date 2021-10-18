@@ -64,6 +64,8 @@ export class ApplicationReviewDetailComponent implements OnInit {
 
   dataSource;
   employeeId;
+
+  comment;
   
   ngOnInit(): void {
     this.route.queryParams
@@ -93,7 +95,7 @@ export class ApplicationReviewDetailComponent implements OnInit {
     let data = new FormData();
     data.append('employeeId', this.employeeId)
     data.append('status','completed')
-    data.append('comment','')
+    data.append('comments',this.comment)
     this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
     .subscribe((result) => {})
   }
@@ -102,7 +104,8 @@ export class ApplicationReviewDetailComponent implements OnInit {
     let data = new FormData();
     data.append('employeeId', this.employeeId)
     data.append('status','rejected')
-    data.append('comment','')
+    data.append('comments',this.comment)
+    
     this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
     .subscribe((result) => {})
   }
