@@ -15,6 +15,8 @@ export class EmployeeVisaComponent implements OnInit {
   selectedFile: File;
   userName!: string;
   needInform: boolean;
+  pageComplete: boolean = false;
+  newVisaStage: string;
 
 
   constructor(private http: HttpClient, private uploadService: UploadFileService, private cookieService: CookieService) { }
@@ -39,9 +41,6 @@ export class EmployeeVisaComponent implements OnInit {
   selectOPTSTEMEAD(event) {
     this.selectedFile = event.target.files.item(0);
   }
-  selectOPTReceipt(event) {
-    this.selectedFile = event.target.files.item(0);
-  }
 
   uploadFile(id: number) {
     this.uploadService.pushFileToStorage(this.selectedFile).subscribe(event => {
@@ -61,9 +60,6 @@ export class EmployeeVisaComponent implements OnInit {
           break;
         case 5:
           newTitile = "OPT STEM EAD";
-          break;
-        case 0:
-          newTitile = "OPT Receipt";
           break;
         default:
           return;
@@ -92,6 +88,9 @@ export class EmployeeVisaComponent implements OnInit {
         console.log(data);
         this.data = data;
         switch (data.visaStage.type) {
+          case "F1(OPT)":
+            this.stage = -1;
+            break;
           case "OPT Receipt":
             this.stage = 1;
             break;
@@ -118,12 +117,14 @@ export class EmployeeVisaComponent implements OnInit {
           return new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
         });
         let timeDiff = Math.abs(Date.now() - new Date(this.data.visaStage.visaEndDate).getTime());
-        let  remainDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+        let remainDays = Math.floor(timeDiff / (1000 * 3600 * 24));
         this.needInform = remainDays <= 100;
+        this.pageComplete = true;
       }, (err) => {
         console.log(err);
       }
     )
+
 
   }
 

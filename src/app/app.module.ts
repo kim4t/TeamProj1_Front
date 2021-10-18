@@ -24,6 +24,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatTableModule } from '@angular/material/table'  
 import { CookieService } from 'ngx-cookie-service';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { PendingComponent } from './pending/pending.component';
+import { RejectedComponent } from './rejected/rejected.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     RegistrationComponent,
     FileUploadComponent,
     EmployeeProfileComponent,
+    PendingComponent,
+    RejectedComponent,
   ],
   imports: [
     ReactiveFormsModule,

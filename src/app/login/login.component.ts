@@ -37,6 +37,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['hrModule']);
         else if (result == "employee")
           this.router.navigate(['employeeModule']);
+        else if (result == "pending")
+          this.router.navigate(['employee/pending'])
+        else if (result == "rejected")
+          this.router.navigate(['employee/rejected'])
         else
           alert("Invalid Username or Password !");
       }
