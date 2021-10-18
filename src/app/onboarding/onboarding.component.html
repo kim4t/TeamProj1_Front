@@ -39,7 +39,7 @@
          <app-file-upload></app-file-upload>
 
         <!-- SSN-->
-        <label for="userNameBox"><strong>SSN</strong></label>
+        <label for="ssn"><strong>SSN</strong></label>
         <input type="text" placeholder="*SSN" required name="ssn" ngModel>
 
         <!-- avatar *********************************************** -->
@@ -103,9 +103,9 @@
         <br>
         <!-- If others,  input box for specifying the work authorization, start date and expiration date-->
         <p [hidden] = "visaType != 'Other'">
-          <label for="userNameBox"><strong>Visa Start Date</strong></label>
+          <label for="visaStartDate"><strong>Visa Start Date</strong></label>
           <input type="date" placeholder="*Visa Start Date" required name="visaStartDate" ngModel>
-          <label for="userNameBox"><strong>Visa End Date</strong></label>
+          <label for="visaEndDate"><strong>Visa End Date</strong></label>
           <input type="date" placeholder="*Visa End Date" required name="visaEndDate" ngModel>
         </p>
         <br>
@@ -129,7 +129,7 @@
         <!-- If yes, driver license number, expiration date, and upload a copy of drive license -->
         <p [hidden] = "checkDriverLicense != 'Yes'">
           <label for="driverLicenseNumber"><strong>Driver license number</strong></label>
-          <input type="text" placeholder="Driver license number" name="visaEndDate" ngModel>
+          <input type="test" placeholder="Driver license number" name="driverLicenseNumber" ngModel>
           <label for="expirationDate"><strong>Expiration Date</strong></label>
           <input type="date" placeholder="Expiration Date" name="expirationDate" ngModel>
           <label for="driverLicenseDocumentPath "><strong>Upload Your DriverLicense</strong></label>
