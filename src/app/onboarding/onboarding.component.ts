@@ -46,12 +46,12 @@ export class OnboardingComponent implements OnInit {
   {
     // create new object of emergencyContact
     let e: emergencyContact = {
-      firstNameEmg: '',
-      lastNameEmg: '',
-      middleNameEmg: '',
-      cellphoneEmg: '',
-      emailEmg: '',
-      relationshipEmg: '',
+      firstName: '',
+      lastName: '',
+      middleName: '',
+      cellphone: '',
+      email: '',
+      relationship: '',
       index: 0
     };
 

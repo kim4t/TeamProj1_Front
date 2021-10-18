@@ -129,7 +129,7 @@
         <!-- If yes, driver license number, expiration date, and upload a copy of drive license -->
         <p [hidden] = "checkDriverLicense != 'Yes'">
           <label for="driverLicenseNumber"><strong>Driver license number</strong></label>
-          <input type="text" placeholder="Driver license number" name="visaEndDate" ngModel>
+          <input type="text" placeholder="Driver license number" name="driverLicenseNumber" ngModel>
           <label for="expirationDate"><strong>Expiration Date</strong></label>
           <input type="date" placeholder="Expiration Date" name="expirationDate" ngModel>
           <label for="driverLicenseDocumentPath "><strong>Upload Your DriverLicense</strong></label>
@@ -175,17 +175,17 @@
         <button type="button" (click)="addEmergencyContact()" style="margin-bottom: 15px;">Add Emerygency Contact</button>
         <div *ngFor="let contact of emergencyContact;let index = index;trackBy:trackByIndex;" >
           <label for="firstNameEmg"><strong>Emergency Contact First Name</strong></label>
-          <input [(ngModel)]="emergencyContact[index].firstNameEmg" placeholder="First Name" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].firstName" placeholder="First Name" [ngModelOptions]="{standalone: true}">
           <label for="lastNameEmg"><strong>Emergency Contact Last Name</strong></label>
-          <input [(ngModel)]="emergencyContact[index].lastNameEmg" placeholder="Last Name" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].lastName" placeholder="Last Name" [ngModelOptions]="{standalone: true}">
           <label for="middleNameEmg"><strong>Emergency Contact Middle Name</strong></label>
-          <input [(ngModel)]="emergencyContact[index].middleNameEmg"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].middleName"placeholder="middle Name" [ngModelOptions]="{standalone: true}">
           <label for="cellphoneEmg"><strong>Emergency Contact Cellphone</strong></label>
-          <input [(ngModel)]="emergencyContact[index].cellphoneEmg" placeholder="cellphone" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].cellphone" placeholder="cellphone" [ngModelOptions]="{standalone: true}">
           <label for="emailEmg"><strong>Emergency Contact E-mail</strong></label>
-          <input [(ngModel)]="emergencyContact[index].emailEmg" placeholder="email" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].email" placeholder="email" [ngModelOptions]="{standalone: true}">
           <label for="relationshipEmg"><strong>Emergency Contact Relationship</strong></label>
-          <input [(ngModel)]="emergencyContact[index].relationshipEmg" placeholder="relationship" [ngModelOptions]="{standalone: true}">
+          <input [(ngModel)]="emergencyContact[index].relationship" placeholder="relationship" [ngModelOptions]="{standalone: true}">
         </div>
 
         <button type="submit">Submit</button>
