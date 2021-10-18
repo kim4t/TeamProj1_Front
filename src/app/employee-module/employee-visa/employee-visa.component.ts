@@ -14,6 +14,8 @@ export class EmployeeVisaComponent implements OnInit {
   data: employeeVisa;
   selectedFile: File;
   userName!: string;
+  needInform: boolean;
+
 
   constructor(private http: HttpClient, private uploadService: UploadFileService, private cookieService: CookieService) { }
 
@@ -115,6 +117,9 @@ export class EmployeeVisaComponent implements OnInit {
         this.data.visaDocumentList.sort(function (a, b) {
           return new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
         });
+        let timeDiff = Math.abs(Date.now() - new Date(this.data.visaStage.visaEndDate).getTime());
+        let  remainDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+        this.needInform = remainDays <= 100;
       }, (err) => {
         console.log(err);
       }
