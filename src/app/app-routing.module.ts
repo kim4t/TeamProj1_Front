@@ -33,6 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'hrModule',
+    canActivate: [LoginGuard],
     loadChildren: () => import('./hr-module/hr.module').then(h => h.HrModule),
   }
 ];
