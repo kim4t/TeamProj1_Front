@@ -79,11 +79,6 @@ export class OnboardingComponent implements OnInit {
     };
 
     this.referencePerson.push(r);
-  
-    if(this.isDisabled)
-    {
-      alert("You Can Only Add One Reference Person !");
-    }
     this.isDisabled = true;
   }
 
