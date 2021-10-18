@@ -46,12 +46,12 @@ export class OnboardingComponent implements OnInit {
   {
     // create new object of emergencyContact
     let e: emergencyContact = {
-      firstNameEmg: '',
-      lastNameEmg: '',
-      middleNameEmg: '',
-      cellphoneEmg: '',
-      emailEmg: '',
-      relationshipEmg: '',
+      firstName: '',
+      lastName: '',
+      middleName: '',
+      cellphone: '',
+      email: '',
+      relationship: '',
       index: 0
     };
 
@@ -79,11 +79,6 @@ export class OnboardingComponent implements OnInit {
     };
 
     this.referencePerson.push(r);
-  
-    if(this.isDisabled)
-    {
-      alert("You Can Only Add One Reference Person !");
-    }
     this.isDisabled = true;
   }
 

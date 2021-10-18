@@ -10,5 +10,4 @@ export class RegistrationService {
 
   constructor(private http: HttpClient) { }
 
- 
 }
