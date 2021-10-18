@@ -5,9 +5,11 @@ import { emergencyContact } from '../model/emergencyContact.model';
 import { onboarding } from '../model/onboarding.model';
 import { referencePerson } from '../model/referencePerson.model';
 import { FileType } from '../enum/fileType.enum';
+import { UploadFileService } from 'src/app/Service/upload-file.service';
+import { personalInfo } from '../employee-module/employee-personal-information/employee-personal-information-model';
 
 enum IsVisa { YES, NO, NONE };
-enum UserVisaType { CITIZEN = 'CITIZEN', GREENCARD = 'GREENCARD', NONE = 'NONE' };
+enum UserVisaType { Citizen = 'Citizen', GreenCard = 'Green Card', NONE = 'NONE' };
 
 @Component({
   selector: 'app-onboarding',
@@ -16,7 +18,7 @@ enum UserVisaType { CITIZEN = 'CITIZEN', GREENCARD = 'GREENCARD', NONE = 'NONE' 
 })
 export class OnboardingComponent implements OnInit {
   
-  constructor(private route: ActivatedRoute, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private http: HttpClient, private uploadService: UploadFileService) { }
 
   emergencyContact: emergencyContact[] = [];
   avartarFileType = FileType.Avatar;
@@ -38,6 +40,11 @@ export class OnboardingComponent implements OnInit {
   mobNumberPattern = "^((\\+91-?)|0)?[0-9]{10}$";  
   gender = "";
 
+
+  avatarBtn: string;
+  tempInfo!: personalInfo;
+  selectedAvatar: File;
+
   ngOnInit(): void  { 
     this.route.queryParams.subscribe(params => {
 
@@ -51,14 +58,12 @@ export class OnboardingComponent implements OnInit {
     
     let onboardingInfo: onboarding;
     onboardingInfo = form.value;
-    onboardingInfo.referencePerson = this.referencePerson;
+    //onboardingInfo.referencePerson = this.referencePerson;
     onboardingInfo.emergencyContact = this.emergencyContact;
     
     for ( var key in onboardingInfo ) {
         this.form_data.append(key, onboardingInfo[key]);
     }
-    const url = "https://teamproj1bucket.s3.us-east-2.amazonaws.com";
-    this.form_data.append('url', url);
 
     /*  Send file to backend as JSON data type */
     this.http.post('http://localhost:8081/employee/onboard ', this.form_data)
@@ -67,22 +72,36 @@ export class OnboardingComponent implements OnInit {
     })
   }
 
-
+  URL = "https://teamproj1bucket.s3.us-east-2.amazonaws.com";
 
   setFile(file: File, fileType: FileType) {
     if(fileType == FileType.Avatar) {
       this.form_data.delete('avatar');
-      this.form_data.append('avatar', file, file.name);
+      // this.form_data.append('avatar', file, file.name);
+      // Just need to get the url from file-upload Service
+      this.form_data.append('avatar', this.URL + '/' + file.name);
     }
     else if(fileType == FileType.DriverLicense)
     {
       this.form_data.delete('driverLicense');
-      this.form_data.append('driverLicense', file, file.name);
+      //this.form_data.append('driverLicense', file, file.name);
+      this.form_data.append('driverLicense', this.URL + '/' + file.name);
     }
     else if(fileType == FileType.Visa) {
       this.form_data.delete('visa');
-      this.form_data.append('visa', file, file.name);
+      //this.form_data.append('visa', file, file.name);
+      this.form_data.append('visa', this.URL + '/' + file.name);
     }
+  }
+
+  uploadAvatar() {
+    this.uploadService.pushFileToStorage(this.selectedAvatar).subscribe(event => {
+      //get the download url from backend
+      this.tempInfo.nameSection.avatar = event;
+      this.avatarBtn = "Done";
+    }, err => {
+      console.log(err.message);
+    });
   }
 
   addEmergencyContact(): void 
