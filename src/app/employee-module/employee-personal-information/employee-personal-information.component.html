@@ -17,6 +17,7 @@
             <h3>Edit Name</h3>
             <form #nameForm="ngForm">
                 <p>
+                    <label for="newAvatar">Avatar: </label>
                     <input type="file" name="newAvatar" (change)="selectAvatar($event)"
                         placeholder="Choose avatar to upload" ngModel>
                     <button [disabled]="!selectedAvatar" (click)="uploadAvatar()">{{avatarBtn}}</button>
@@ -49,7 +50,6 @@
                     <label for="ssn">SSN: </label>
                     <input type="number" name="ssn" [(ngModel)]="tempInfo.nameSection.ssn" required>
                 </p>
-                <p>upload avatar (implement later)</p>
                 <button (click)="saveName()" [disabled]="!nameForm.valid">Save</button>
                 <button (click)="cancelName(nameForm)">Cancel</button>
             </form>
