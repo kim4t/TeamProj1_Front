@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { HrHttpService } from '../services/hr-http.service';
 
 export interface statusElementList{
   statusElement: statusElement[]
@@ -24,7 +25,7 @@ export interface statusElement {
 })
 export class StatusTrackingComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private actRoute: ActivatedRoute, private http: HttpClient, private hrHttpService: HrHttpService) { }
 
   
   dataSource;

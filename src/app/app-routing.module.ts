@@ -7,6 +7,7 @@ import { PendingComponent } from './pending/pending.component';
 import { RejectedComponent } from './rejected/rejected.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginGuard } from './guards/login.guard';
+import { HrGuard } from './guards/hr.guard';
 const routes: Routes = [
   {
     // specify Login component 
@@ -45,6 +46,7 @@ const routes: Routes = [
   },
   {
     path: 'hrModule',
+    canActivate: [HrGuard],
     loadChildren: () => import('./hr-module/hr.module').then(h => h.HrModule),
   }
 ];

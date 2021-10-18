@@ -7,7 +7,7 @@ import { VisaStatusManagementComponent } from './visa-status-management/visa-sta
 import { StatusTrackingComponent } from './status-tracking/status-tracking.component';
 import { ApplicationReviewComponent } from './application-review/application-review.component';
 import { ApplicationReviewDetailComponent } from './application-review-detail/application-review-detail.component';
-
+import { HrHttpResolver } from './services/hr-http.resolver';
 
 const routes: Routes = [
  
