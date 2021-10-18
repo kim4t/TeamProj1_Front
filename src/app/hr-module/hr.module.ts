@@ -17,6 +17,8 @@ import { MatCardModule} from '@angular/material/card';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { ApplicationReviewDetailComponent } from './application-review-detail/application-review-detail.component';
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { ApplicationReviewDetailComponent } from './application-review-detail/ap
     MatToolbarModule,
     MatIconModule,
     
-  ]
-  
+  ],
+  providers:
+  [CookieService],
 })
 export class HrModule { }
