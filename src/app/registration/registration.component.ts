@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';import { NgForm } from '@angular/forms';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { IfStmt } from '@angular/compiler';
+import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -27,13 +26,13 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
-  onSubmit(form: any)
+  onSubmit(form: any): void
   {
 
       /** POST username, password, e-mail, and token to the backend */
 
-    let data  = new FormData();
-    for ( var key in form ) {
+    const data  = new FormData();
+    for ( const key in form ) {
       data.append(key, form[key]);
     }
     //data.append('userName', form['userName']);
