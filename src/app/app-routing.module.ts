@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { SendemailComponent } from './sendemail/sendemail.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { PendingComponent } from './pending/pending.component';
+import { RejectedComponent } from './rejected/rejected.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
@@ -20,6 +22,16 @@ const routes: Routes = [
     // specify On-Boarding Component
     path: 'employee/on-boarding',
     component: OnboardingComponent,
+  },
+  {
+    // after sending onboarding request
+    path: 'employee/pending',
+    component: PendingComponent,
+  },
+  {
+    // 
+    path: 'employee/rejected',
+    component: RejectedComponent,
   },
   {
     // specify Registration Component

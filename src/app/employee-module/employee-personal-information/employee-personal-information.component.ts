@@ -18,6 +18,7 @@ export class EmployeePersonalInformationComponent implements OnInit {
   ssn!: string;
   selectedAvatar: File;
   avatarBtn: string;
+  
   edit = {
     editName: false,
     editAddress: false,
@@ -247,5 +248,6 @@ export class EmployeePersonalInformationComponent implements OnInit {
     this.info.personalDocumentList.sort(function (a, b) {
       return new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
     });
+    
   }
 }
