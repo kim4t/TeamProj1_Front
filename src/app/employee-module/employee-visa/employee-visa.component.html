@@ -11,7 +11,7 @@
         <p>Your visa status is not OPT or OPT STEM </p>
         <p>Your current Visa type: {{data.visaStage.type}}</p>
     </div>
-    <div class = "comment" [hidden]="status != 'OPT Rejected'">
+    <div class = "comment" [hidden]="status != 'OPT rejected'">
         Your application is rejected, please follow the comment and modified it.<br>
         comment: {{data.visaStage.comment}}
     </div>

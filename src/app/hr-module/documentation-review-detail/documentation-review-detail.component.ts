@@ -42,8 +42,11 @@ export class DocumentationReviewDetailComponent implements OnInit {
    
   }
   get(){
+    if(this.fileTitle == 'applying OPT Receipt'){
+      this.fileTitle = 'OPT Receipt'
+    }
 
-    if(this.fileTitle == 'OPT Receipt'){
+    else if(this.fileTitle == 'OPT Receipt'){
         this.fileTitle = 'OPT EAD'
     }
     else if(this.fileTitle == 'OPT EAD'){
@@ -64,15 +67,13 @@ export class DocumentationReviewDetailComponent implements OnInit {
     
     let data  = new FormData();
     data.append('employeeId', this.employeeId);
-    data.append('title',this.fileTitle+' File')
+    data.append('title',this.fileTitle+' file')
       console.log(this.employeeId);
      
      this.http.post('http://localhost:8081/hrModule/documentationReviewDetail', data, {responseType: 'json', withCredentials: true})
      .subscribe((result) => { this.dataSource = result;  console.log(this.dataSource)})
 
-     if(this.fileTitle == 'OPT EAD'){
-      this.fileTitle = 'OPT STEM EAD'
-    }
+     
     
   }
 
@@ -85,7 +86,6 @@ export class DocumentationReviewDetailComponent implements OnInit {
 
   approve(){
 
-   
     let data = new FormData();
     data.append('employeeId', this.employeeId)
     data.append('status','OPT completed')
