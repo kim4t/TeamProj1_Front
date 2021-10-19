@@ -17,6 +17,7 @@ export class EmployeeVisaComponent implements OnInit {
   needInform: boolean;
   pageComplete: boolean = false;
   newOPTStep: string = "";
+  status: string;
 
   constructor(private http: HttpClient, private uploadService: UploadFileService, private cookieService: CookieService) { }
 
@@ -32,24 +33,57 @@ export class EmployeeVisaComponent implements OnInit {
     this.selectedFile = event.target.files.item(0);
   }
   uploadSpecified() {
-    //console.log(this.newVisaStage);
-    //console.log(this.selectedFile);
     let id = this.getStage(this.newOPTStep);
     //upload file
-    this.uploadFile(id - 1);
-    //set to new type
-    this.data.visaStage.type = this.newOPTStep;
-
-    this.http.post('http://localhost:8081/employee/visa/newStep', this.data.visaStage, { responseType: 'json', withCredentials: true }).subscribe((result) => {
-      console.log(result);
-      this.stage = this.getStage(this.data.visaStage.type);
-    }, (err) => {
-      console.log(err);
-    }
-    )
-
-
-
+    //this.uploadFile(id - 1);
+    id = id - 1;
+    this.uploadService.pushFileToStorage(this.selectedFile).subscribe(event => {
+      let newTitile = "";
+      switch (id) {
+        case 0:
+          newTitile = "OPT Receipt file";
+          break;
+        case 1:
+          newTitile = "OPT EAD file";
+          break;
+        case 2:
+          newTitile = "I-983 file";
+          break;
+        case 3:
+          newTitile = "I-20 file";
+          break;
+        case 4:
+          newTitile = "OPT STEM Receipt file";
+          break;
+        case 5:
+          newTitile = "OPT STEM EAD file";
+          break;
+        default:
+          return;
+      }
+      console.log("newTitle: " + newTitile)
+      let newDoc: personalDocument = {
+        path: event,
+        title: newTitile
+      }
+      this.http.post('http://localhost:8081/employee/visa/upload', newDoc, { responseType: 'json', withCredentials: true }).subscribe((result) => {
+        //set to new type
+        this.data.visaStage.type = this.toStage(id);
+        this.http.post('http://localhost:8081/employee/visa/newStep', this.data.visaStage, { responseType: 'json', withCredentials: true }).subscribe((result) => {
+          console.log(result);
+          this.stage = this.getStage(this.data.visaStage.type);
+          this.status = "OPT Pending"
+        }, (err) => {
+          console.log(err);
+        }
+        )
+      }, (err) => {
+        console.log(err);
+      }
+      )
+    }, err => {
+      console.log(err.message);
+    });
   }
 
   getStage(stageName: string): number {
@@ -76,10 +110,35 @@ export class EmployeeVisaComponent implements OnInit {
       case "OPT STEM EAD":
         res = 6;
         break;
+      case "applying OPT Receipt":
+        res = 8;
+        break;
       default:
         res = 0;
     }
     return res;
+  }
+
+  toStage(index: number): string {
+    switch (index) {
+      case 0:
+        return "applying OPT Receipt";
+      case 1:
+        return "OPT Receipt";
+      case 2:
+        return "OPT EAD";
+      case 3:
+        return "I-983";
+      case 4:
+        return "I-20";
+      case 5:
+        return "OPT STEM Receipt";
+      case 6:
+        return "OPT STEM EAD";
+      default:
+        return "other";
+    }
+
   }
 
   uploadFile(id: number) {
@@ -107,7 +166,7 @@ export class EmployeeVisaComponent implements OnInit {
         default:
           return;
       }
-      newTitile = this.userName + '_' + newTitile;
+      //newTitile = this.userName + '_' + newTitile;
       console.log("newTitle: " + newTitile)
       let newDoc: personalDocument = {
         path: event,
@@ -116,6 +175,7 @@ export class EmployeeVisaComponent implements OnInit {
       this.http.post('http://localhost:8081/employee/visa/upload', newDoc, { responseType: 'json', withCredentials: true }).subscribe((result) => {
         console.log(result);
         document.getElementById("uploadRes" + this.stage).innerHTML = "Done";
+        this.status = "OPT Pending"
       }, (err) => {
         console.log(err);
       }
@@ -131,34 +191,6 @@ export class EmployeeVisaComponent implements OnInit {
         console.log(data);
         this.data = data;
         this.stage = this.getStage(data.visaStage.type);
-        /*
-                switch (data.visaStage.type) {
-                  case "F1(OPT)":
-                    this.stage = -1;
-                    break;
-                  case "OPT Receipt":
-                    this.stage = 1;
-                    break;
-                  case "OPT EAD":
-                    this.stage = 2;
-                    break;
-                  case "I-983":
-                    this.stage = 3;
-                    break;
-                  case "I-20":
-                    this.stage = 4;
-                    break;
-                  case "OPT STEM Receipt":
-                    this.stage = 5;
-                    break;
-                  case "OPT STEM EAD":
-                    this.stage = 6;
-                    break;
-                  default:
-                    this.stage = 0;
-                }
-        
-        */
         this.userName = this.cookieService.get('userName');
         this.data.visaDocumentList.sort(function (a, b) {
           return new Date(b.createDate).getTime() - new Date(a.createDate).getTime();
@@ -166,6 +198,7 @@ export class EmployeeVisaComponent implements OnInit {
         let timeDiff = Math.abs(Date.now() - new Date(this.data.visaStage.visaEndDate).getTime());
         let remainDays = Math.floor(timeDiff / (1000 * 3600 * 24));
         this.needInform = remainDays <= 100;
+        this.status = data.visaStage.status;
         this.pageComplete = true;
       }, (err) => {
         console.log(err);

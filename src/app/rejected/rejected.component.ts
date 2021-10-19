@@ -61,7 +61,7 @@ export class RejectedComponent implements OnInit {
     this.http.get('http://localhost:8081/employee/onboard/rejected', { responseType: 'json', withCredentials: true }).subscribe(
       (data: personalInfo) => {
         console.log(data);
-        if (data.appStatus != "rejected") {
+        if (data.appStatus != "Onboard Rejected") {
           this.router.navigate(['employeeModule']);
         }
         this.info = data;

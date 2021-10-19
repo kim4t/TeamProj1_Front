@@ -1,3 +1,7 @@
-.section{
+.section {
     border-style: solid;
+}
+
+.comment {
+    color :red;
 }
