@@ -61,7 +61,7 @@
         <input type="text" placeholder="*City" required name="city" ngModel>
 
         <!-- State -->
-        <label for="userNameBox"><strong>State Abbreviation</strong></label>
+        <label for="userNameBox"><strong>State Abbreviation</strong></label> 
         <input type="text" placeholder="*State Abbreviation" required name="stateAbbr" ngModel>
         <label for="userNameBox"><strong>State Name</strong></label>
         <input type="text" placeholder="*State Name" required name="stateName" ngModel>
@@ -125,10 +125,10 @@
         <!-- Do you have a driver license -->
         <!-- If yes, driver license number, expiration date, and upload a copy of drive license -->
         <p [hidden] = "checkDriverLicense != 'Yes'">
-          <label for="driverLicenseNumber"><strong>Driver license number</strong></label>
-          <input type="text" placeholder="Driver license number" name="driverLicenseNumber" ngModel>
-          <label for="expirationDate"><strong>Expiration Date</strong></label>
-          <input type="date" placeholder="Expiration Date" name="expirationDate" ngModel>
+          <label for="driverLicense"><strong>Driver license number</strong></label>
+          <input type="text" placeholder="Driver license number" name="driverLicense" ngModel>
+          <label for="driverLicenseExpirationDate"><strong>Expiration Date</strong></label>
+          <input type="date" placeholder="Expiration Date" name="driverLicenseExpirationDate" ngModel>
           <label for="driverLicenseDocumentPath "><strong>Upload Your DriverLicense</strong></label>
           <app-file-upload (selectedFileEvt)="setFile($event, driverLicenseFileType)"></app-file-upload>
         </p>
