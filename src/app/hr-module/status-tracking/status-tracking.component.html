@@ -24,7 +24,13 @@
           <td>{{d.lastName}}</td>
           <td>{{d.status}}</td>
           <td>{{d.visaEndDate}}</td>
-          <td>{{d.dayLeft}}</td>
+          <div *ngIf="d.dayLeft == 9999999">
+              <td>Infinte</td>
+          </div>
+          <div *ngIf="d.dayLeft != 9999999">
+            <td>{{d.dayLeft}}</td>
+        </div>
+         
           <!-- <button (click) = "email()"></button> -->
         </tr>
       </tbody>
