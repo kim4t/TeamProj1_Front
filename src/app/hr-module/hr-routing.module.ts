@@ -8,6 +8,8 @@ import { StatusTrackingComponent } from './status-tracking/status-tracking.compo
 import { ApplicationReviewComponent } from './application-review/application-review.component';
 import { ApplicationReviewDetailComponent } from './application-review-detail/application-review-detail.component';
 import { HrHttpResolver } from './services/hr-http.resolver';
+import { DocumentationReviewComponent } from './documentation-review/documentation-review.component';
+import { DocumentationReviewDetailComponent } from './documentation-review-detail/documentation-review-detail.component';
 
 const routes: Routes = [
  
@@ -20,6 +22,8 @@ const routes: Routes = [
        { path: 'statusTracking', component: StatusTrackingComponent },
        { path: 'applicationReview', component: ApplicationReviewComponent },
        { path: 'applicationReviewDetail',component:ApplicationReviewDetailComponent },
+       { path: 'documentationReview',component:DocumentationReviewComponent },
+       { path: 'documentationReviewDetail',component:DocumentationReviewDetailComponent },
     ]
   }
 

@@ -42,6 +42,9 @@ export class StatusTrackingComponent implements OnInit {
     }
     )
   }
+  email(){
+    
+  }
 
 
 }

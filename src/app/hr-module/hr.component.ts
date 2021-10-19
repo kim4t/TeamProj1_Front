@@ -50,4 +50,8 @@ export class HrComponent implements OnInit {
     this.router.navigate(['hrModule/applicationReview']);
   }
 
+  toDocumentationReview(): void {
+    this.router.navigate(['hrModule/documentationReview']);
+  }
+  
 }
