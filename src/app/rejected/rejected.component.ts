@@ -50,6 +50,7 @@ export class RejectedComponent implements OnInit {
     this.http.post('http://localhost:8081/employee/onboard/update', this.tempInfo, { responseType: 'json', withCredentials: true }).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigate(['/']);
       }, (err) => {
 
       }
@@ -67,6 +68,8 @@ export class RejectedComponent implements OnInit {
         this.info = data;
         this.tempInfo = JSON.parse(JSON.stringify(data));
         this.pageComplete = true;
+
+
       }, (err) => {
         console.log(err);
       }
