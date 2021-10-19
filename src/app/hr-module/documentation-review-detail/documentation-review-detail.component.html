@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5"   *ngIf="isPermenent == false">
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
@@ -27,7 +27,13 @@
         <textarea matInput placeholder="..." name="comment" [(ngModel)]="comment"></textarea>
       </mat-form-field>
     </form>
-
+          
             <button class="btn btn-primary" (click)="approve()">Approve</button>
             <button class="btn btn-danger" (click)="reject()">Reject</button>
+          
+  </div>
+
+  <div   *ngIf="isPermenent == true">
+
+    <h1>It is Completed</h1>
   </div>
