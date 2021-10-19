@@ -28,9 +28,13 @@
         </select> <br><br>
 
         <!-- Phone with validation-->
-        <label for="userNameBox"><strong>CellPhone</strong></label>
+        <label for="CellPhone"><strong>CellPhone</strong></label>
         <input type="tel" placeholder="*CellPhone" required name="cellphone" ngModel [pattern]="mobNumberPattern">
-        <label for="userNameBox"><strong>AlternatePhone</strong></label>
+
+        <label for="car"><strong>Car (hint: Maker_Model_Color)</strong></label>
+        <input type="text" placeholder="Car" name="car" ngModel>
+        
+        <label for="AlternatePhone"><strong>AlternatePhone</strong></label>
         <input type="tel" placeholder="AlternatePhone" name="alternatePhone" ngModel>
 
         <!-- Date of Birth -->
@@ -57,26 +61,18 @@
         <input type="text" placeholder="*City" required name="city" ngModel>
 
         <!-- State -->
-        <label for="userNameBox"><strong>State Abbreviation</strong></label>
+        <label for="userNameBox"><strong>State Abbreviation</strong></label> 
         <input type="text" placeholder="*State Abbreviation" required name="stateAbbr" ngModel>
         <label for="userNameBox"><strong>State Name</strong></label>
         <input type="text" placeholder="*State Name" required name="stateName" ngModel>
 
         <!-- zip code with validation -->
         <label for="userNameBox"><strong>Zip Code</strong></label>
-        <input type="text" placeholder="*Zip Code" required name="zipCode" ngModel>
- 
-        <!-- Car -->
+        <input type="text" placeholder="*Zip Code" required name="zipCode" ngModel pattern="[0-9]*">
 
         <!-- Visa -->
         <!-- Are you a citizen or permanent resident of the U.S? --> 
         <label for="checkVisaType"><strong>Are you a citizen or permanent resident of the U.S?</strong></label> <br>
-
-        <!-- DropDwon-->
-        <!-- <select name="checkVisaType" [(ngModel)] = "checkVisaType">
-          <option Value="Yes">Yes</option>
-          <option Value="No">No</option>
-        </select>  -->
 
          
         <input type="checkbox" name="checkVisaType" class="default" [checked]="currentVisaType === isVisaEnum.YES" (click)="selectCheckBoxForIsCitizen(isVisaEnum.YES)">Yes
@@ -86,13 +82,8 @@
         
         <!-- If yes, choose either "Green Card" or "Citizen" --Check Box    -->      
         <p *ngIf = "currentVisaType === isVisaEnum.YES">
-          
           <input type="checkbox" name="visaType"  class="default" [checked]="currentUserVisa===isUserVisaEnum.GreenCard" (click)="selectCheckBoxForVisaType(isUserVisaEnum.GreenCard)">Green Card 
           <input type="checkbox" name="visaType"  class="default" [checked]="currentUserVisa===isUserVisaEnum.Citizen" (click)="selectCheckBoxForVisaType(isUserVisaEnum.Citizen)">Citizen
-          <!-- <select name="visaType" [(ngModel)] = "visaType">
-            <option Value="citizen">Citizen</option>
-            <option Value="GreenCard">GreenCard</option>
-          </select> -->
         </p>
         
         <!-- If no, “What is your work authorization?”(*, Dropdown: H1-B, L2, F1(CPT/OPT), H4, Other    -->
@@ -134,10 +125,10 @@
         <!-- Do you have a driver license -->
         <!-- If yes, driver license number, expiration date, and upload a copy of drive license -->
         <p [hidden] = "checkDriverLicense != 'Yes'">
-          <label for="driverLicenseNumber"><strong>Driver license number</strong></label>
-          <input type="text" placeholder="Driver license number" name="driverLicenseNumber" ngModel>
-          <label for="expirationDate"><strong>Expiration Date</strong></label>
-          <input type="date" placeholder="Expiration Date" name="expirationDate" ngModel>
+          <label for="driverLicense"><strong>Driver license number</strong></label>
+          <input type="text" placeholder="Driver license number" name="driverLicense" ngModel>
+          <label for="driverLicenseExpirationDate"><strong>Expiration Date</strong></label>
+          <input type="date" placeholder="Expiration Date" name="driverLicenseExpirationDate" ngModel>
           <label for="driverLicenseDocumentPath "><strong>Upload Your DriverLicense</strong></label>
           <app-file-upload (selectedFileEvt)="setFile($event, driverLicenseFileType)"></app-file-upload>
         </p>
@@ -151,31 +142,39 @@
         <button type="button" [disabled]="isDisabled" (click)="addReferencePerson()" style="margin-bottom: 15px;">Add Reference Person</button>
         <div *ngIf="isDisabled">
           <label for="firstNameRef"><strong>Ref. Person's First Name</strong></label>
-          <input type="text" placeholder="First Name" name="firstNameRef" ngModel>
-          <label for="lastNameRef"><strong>Ref. Person's Last Name</strong></label>
-          <input type="text" placeholder="Last Name" name="lastNameRef" ngModel>
+          <input type="text" name="firstNameRef" ngModel placeholder="First Name">
+          <label for="lastNameRef"><strong>Ref. Person's Last Name</strong></label> 
+          <input type="text" name="lastNameRef" ngModel placeholder="Last Name">
           <label for="middleNameRef"><strong>Ref. Person's Middle Name</strong></label>
-          <input type="text" placeholder="middle Name" name="middleNameRef" ngModel>
+          <input type="text" name="middleNameRef" ngModel placeholder="middle Name">
           <label for="cellphoneRef"><strong>Ref. Person's Cellphone</strong></label>
-          <input type="text" placeholder="Cellphone" name="cellphoneRef" ngModel>
+          <input type="text" name="cellphoneRef" ngModel placeholder="CellPhone">
           <label for="emailRef"><strong>Ref. Person's E-mail</strong></label>
-          <input type="text" placeholder="E-mail" name="emailRef" ngModel>
+          <input type="text" name="emailRef" ngModel placeholder="E-mail">
           <label for="relationshipRef"><strong>Ref. Person's Relationship</strong></label>
-          <input type="text" placeholder="Relationship" name="relationshipRef" ngModel>
-          <label for="addressLine1Ref"><strong>Ref. Person's Address Line 1</strong></label>
-          <input type="text" placeholder="Address Line1" name="addressLine1Ref" ngModel>
-          <label for="addressLine2Ref"><strong>Ref. Person's Address Line 2</strong></label>
-          <input type="text" placeholder="Address Line2" name="addressLine2Ref" ngModel>
-          <label for="cityRef"><strong>Ref. Person's City</strong></label>
-          <input type="text" placeholder="City" name="cityRef" ngModel>
-          <label for="stateAbbrRef"><strong>Ref. Person's State Abbreivation</strong></label>
-          <input type="text" placeholder="State Abbreviation" name="stateAbbrRef" ngModel>
-          <label for="stateNameRef"><strong>Ref. Person's State Name</strong></label>
-          <input type="text" placeholder="State Name" name="stateNameRef" ngModel>
-          <label for="zipCodeRef"><strong>Ref. Person's Zip Code</strong></label>
-          <input type="text" placeholder="Zip Code" name="zipCodeRef" ngModel>
+          <input type="text" name="relationshipRef" ngModel placeholder="relationship">
 
-          <!-- <input [(ngModel)]="referencePerson.zipCodeRef" placeholder="Zip Code" name="zipCodeRef" [ngModelOptions]="{standalone: true}"> -->
+
+          <label for="addressLine1Ref"><strong>Ref. Person's Address Line 1</strong></label>
+          <input type="text" name="addressLine1Ref" ngModel placeholder="Address Line1">
+
+          <label for="addressLine2Ref"><strong>Ref. Person's Address Line 2</strong></label>
+          <input type="text" name="addressLine2Ref" ngModel placeholder="Address Line2">
+
+
+          <label for="cityRef"><strong>Ref. Person's City</strong></label>
+          <input type="text" name="cityRef" ngModel placeholder="City">
+
+
+          <label for="stateAbbrRef"><strong>Ref. Person's State Abbreivation</strong></label>
+          <input type="text" name="stateAbbrRef" ngModel placeholder="State Abbreivation">
+
+
+          <label for="stateNameRef"><strong>Ref. Person's State Name</strong></label>
+          <input type="text" name="stateNameRef" ngModel placeholder="State Name">
+
+          <label for="zipCodeRef"><strong>Ref. Person's Zip Code</strong></label>
+          <input type="text" name="zipCodeRef" ngModel placeholder="Zip Code">
         </div>
 
         <!-- Emerygency Contact List* (at least one or multiple)-->

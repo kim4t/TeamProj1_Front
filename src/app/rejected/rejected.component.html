@@ -1,1 +1,234 @@
-<h2>Sorry. Your onboarding is rejected, please follow the comment and modified it.</h2>
+<div class="ground">
+    <h2>Sorry. Your onboarding is rejected, please follow the comment and modified it.</h2>
+    <div [hidden]="pageComplete">
+        Loading......
+    </div>
+
+    <div [hidden]="!pageComplete">
+        <h3 class="comment">Comment from Hr: {{info.hrComment}}</h3>
+
+        <!--Name -->
+        <form #reOnboard="ngForm">
+            <img src="{{tempInfo.nameSection.avatar == 'default avatar' ? 'assets/icon/default-avatar.jpeg' : tempInfo.nameSection.avatar}}"
+                width="40" height="40">
+            <p>
+                <label for="newAvatar">Avatar: </label>
+                <input type="file" name="newAvatar" (change)="selectAvatar($event)"
+                    placeholder="Choose avatar to upload" ngModel>
+                <button [disabled]="!selectedAvatar" (click)="uploadAvatar()">{{avatarBtn}}</button>
+            </p>
+            <p>
+                <label for="firstName">First Name: </label>
+                <input type="text" name="firstName" [(ngModel)]="tempInfo.nameSection.firstName" required>
+            </p>
+            <p>
+                <label for="lastName">Last Name: </label>
+                <input type="text" name="lastName" [(ngModel)]="tempInfo.nameSection.lastName" required>
+            </p>
+            <p>
+                <label for="middleName">Middle Name: </label>
+                <input type="text" name="middleName" [(ngModel)]="tempInfo.nameSection.middleName">
+            </p>
+            <p>
+                <label for="dob">Date of Birth: </label>
+                <input type="date" name="dob" [(ngModel)]="tempInfo.nameSection.dob" required>
+            </p>
+            <p>
+                <label for="gender">Gender: </label>
+                <select name="gender" [(ngModel)]="tempInfo.nameSection.gender">
+                    <option Value="M">Male</option>
+                    <option Value="F">Female</option>
+                    <option Value="N">I don’t want to answer</option>
+                </select>
+            </p>
+            <p>
+                <label for="ssn">SSN: </label>
+                <input type="number" name="ssn" [(ngModel)]="tempInfo.nameSection.ssn" required>
+            </p>
+
+            <!-- contactSection -->
+            <p>
+                <label for="email">Email: </label>
+                <input type="text" name="email" [(ngModel)]="tempInfo.contactSection.email" disabled>
+            </p>
+            <p>
+                <label for="cellphone">Cellphone: </label>
+                <input type="text" name="cellphone" [(ngModel)]="tempInfo.contactSection.cellphone" required>
+            </p>
+            <p>
+                <label for="alternatePhone">Alternate Phone: </label>
+                <input type="text" name="alternatePhone" [(ngModel)]="tempInfo.contactSection.alternatePhone">
+            </p>
+            <!-- addressSection -->
+            <p>
+                <label for="addressLine1">Address Line1: </label>
+                <input type="text" name="addressLine1" [(ngModel)]="tempInfo.addressSection.addressLine1" required>
+            </p>
+            <p>
+                <label for="addressLine2">Address Line2: </label>
+                <input type="text" name="addressLine2" [(ngModel)]="tempInfo.addressSection.addressLine2">
+            </p>
+            <p>
+                <label for="city">City: </label>
+                <input type="text" name="city" [(ngModel)]="tempInfo.addressSection.city" required>
+            </p>
+            <p>
+                <label for="stateAbbr">State Abbreviation: </label>
+                <input type="text" name="stateAbbr" [(ngModel)]="tempInfo.addressSection.stateAbbr" required>
+            </p>
+            <p>
+                <label for="stateName">State Name: </label>
+                <input type="text" name="stateName" [(ngModel)]="tempInfo.addressSection.stateName" required>
+            </p>
+            <p>
+                <label for="zipCode">Zip Code: </label>
+                <input type="text" name="zipCode" [(ngModel)]="tempInfo.addressSection.zipCode" required>
+            </p>
+
+
+
+            <!-- employeeSection -->
+
+            <p>
+                <label for="visaType">Work Authorization: </label>
+                <select name="visaType" [(ngModel)]="tempInfo.employeeSection.visaType">
+                    <option Value="Green Card">Green Card</option>
+                    <option Value="Citizen">Citizen</option>
+                    <option Value="H1-B">H1-B</option>
+                    <option Value="L2">L2</option>
+                    <option Value="F1(CPT)">F1(CPT)</option>
+                    <option Value="F1(OPT)">F1(OPT)</option>
+                    <option Value="H4">H4</option>
+                    <option Value="other">other</option>
+                </select>
+            </p>
+            <p [hidden]="tempInfo.employeeSection.visaType != 'other'">
+                <label for="otherVisaType">Other: </label>
+                <input type="text" name="otherVisaType" ngModel>
+            </p>
+            <p
+                [hidden]="tempInfo.employeeSection.visaType == 'Green Card' || tempInfo.employeeSection.visaType == 'Citizen'">
+                <label for="visaStartDate">Visa Start Date: </label>
+                <input type="date" name="visaStartDate" [(ngModel)]="tempInfo.employeeSection.visaStartDate">
+            </p>
+            <p
+                [hidden]="tempInfo.employeeSection.visaType == 'Green Card' || tempInfo.employeeSection.visaType == 'Citizen'">
+                <label for="visaEndDate">Visa End Date: </label>
+                <input type="date" name="visaEndDate" [(ngModel)]="tempInfo.employeeSection.visaEndDate">
+            </p>
+            <p>
+                <label for="car">Car Information: </label>
+                <input type="text" name="car" [(ngModel)]="tempInfo.employeeSection.car" required>
+            </p>
+            <p>
+                <label for="driverLicense">Driver License: </label>
+                <input type="text" name="driverLicense" [(ngModel)]="tempInfo.employeeSection.driverLicense">
+            </p>
+            <p>
+                <label for="driverLicenseExpirationDate">Driver License Expiration Date: </label>
+                <input type="date" name="driverLicenseExpirationDate" [(ngModel)]="tempInfo.employeeSection.driverLicenseExpirationDate">
+            </p>
+
+            <br>
+            <!-- emergencyContactList -->
+            <p>Emergency Contact: </p>
+            <div *ngFor="let contact of tempInfo.emergencyContactList; index as i">
+                <p>Person {{i+1}}: </p>
+                <p>
+                    <label for="firstName{{i}}">First Name: </label>
+                    <input type="text" name="firstName{{i}}" [(ngModel)]="tempInfo.emergencyContactList[i].firstName"
+                        required>
+                </p>
+                <p>
+                    <label for="lastName{{i}}">Last Name: </label>
+                    <input type="text" name="lastName{{i}}" [(ngModel)]="tempInfo.emergencyContactList[i].lastName"
+                        required>
+                </p>
+                <p>
+                    <label for="relationship{{i}}">Relationship: </label>
+                    <input type="text" name="relationship{{i}}"
+                        [(ngModel)]="tempInfo.emergencyContactList[i].relationship" required>
+                </p>
+                <p>
+                    <label for="cellphone{{i}}">Cellphone: </label>
+                    <input type="number" name="cellphone{{i}}" [(ngModel)]="tempInfo.emergencyContactList[i].cellphone"
+                        required>
+                </p>
+                <p>
+                    <label for="email{{i}}">Email: </label>
+                    <input type="text" name="email{{i}}" [(ngModel)]="tempInfo.emergencyContactList[i].email" required>
+                </p>
+            </div>
+
+            <br>
+            <p>Reference Person:</p>
+            <p>
+                <label for="firstNameR">First Name: </label>
+                <input type="text" name="firstNameR" [(ngModel)]="tempInfo.referencePerson.firstName" required>
+            </p>
+            <p>
+                <label for="lastNameR">Last Name: </label>
+                <input type="text" name="lastNameR" [(ngModel)]="tempInfo.referencePerson.lastName" required>
+            </p>
+            <p>
+                <label for="middleNameR">Middle Name: </label>
+                <input type="text" name="middleNameR" [(ngModel)]="tempInfo.referencePerson.middleName">
+            </p>
+            <p>
+                <label for="emailR">Email: </label>
+                <input type="text" name="emailR" [(ngModel)]="tempInfo.referencePerson.email" required>
+            </p>
+            <p>
+                <label for="cellphoneR">Cellphone: </label>
+                <input type="text" name="cellphoneR" [(ngModel)]="tempInfo.referencePerson.cellphone" required>
+            </p>
+            <p>
+                <label for="relationshipR">Relationship: </label>
+                <input type="text" name="relationshipR" [(ngModel)]="tempInfo.referencePerson.relationship"
+                    required>
+            </p>
+            <p>
+                <label for="addressLine1R">Address Line1: </label>
+                <input type="text" name="addressLine1R" [(ngModel)]="tempInfo.referencePerson.addressSection.addressLine1" required>
+            </p>
+            <p>
+                <label for="addressLine2R">Address Line2: </label>
+                <input type="text" name="addressLine2R" [(ngModel)]="tempInfo.referencePerson.addressSection.addressLine2">
+            </p>
+            <p>
+                <label for="cityR">City: </label>
+                <input type="text" name="cityR" [(ngModel)]="tempInfo.referencePerson.addressSection.city" required>
+            </p>
+            <p>
+                <label for="stateAbbrR">State Abbreviation: </label>
+                <input type="text" name="stateAbbrR" [(ngModel)]="tempInfo.referencePerson.addressSection.stateAbbr" required>
+            </p>
+            <p>
+                <label for="stateNameR">State Name: </label>
+                <input type="text" name="stateNameR" [(ngModel)]="tempInfo.referencePerson.addressSection.stateName" required>
+            </p>
+            <p>
+                <label for="zipCodeR">Zip Code: </label>
+                <input type="text" name="zipCodeR" [(ngModel)]="tempInfo.referencePerson.addressSection.zipCode" required>
+            </p>
+
+            <br>
+            <!-- personalDocumentList -->
+            <p>Documents: </p>
+            <ul class="personal-document">
+                <li *ngFor="let doc of tempInfo.personalDocumentList; index as i">
+                    <i class="Small material-icons">insert_drive_file</i> &nbsp;
+                    {{doc.title}}&nbsp;
+                    CreateDate: {{doc.createDate}}&nbsp;
+                    <button (click)="filePreview(doc)">download</button>
+                    <input type="file" name="newDoc{{i}}" (change)="uploadDocument($event, i)" ngModel>
+                    <span id="uploadRes{{i}}"></span>
+
+                </li>
+
+            </ul>
+
+        </form>
+        <button (click)="save()" [disabled]="!reOnboard.valid">Save</button>
+    </div>
+</div>
