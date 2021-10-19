@@ -88,7 +88,7 @@ export class DocumentationReviewDetailComponent implements OnInit {
    
     let data = new FormData();
     data.append('employeeId', this.employeeId)
-    data.append('status','completed')
+    data.append('status','OPT completed')
     data.append('comments',this.comment)
     data.append('type',this.fileTitle)
     this.http.post('http://localhost:8081/hrModule/documentationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
@@ -98,7 +98,7 @@ export class DocumentationReviewDetailComponent implements OnInit {
   reject(){
     let data = new FormData();
     data.append('employeeId', this.employeeId)
-    data.append('status','rejected')
+    data.append('status','OPT rejected')
     data.append('comments',this.comment)
     data.append('type',this.fileTitle)
     this.http.post('http://localhost:8081/hrModule/documentationReviewDetail/update', data, {responseType: 'json', withCredentials: true})

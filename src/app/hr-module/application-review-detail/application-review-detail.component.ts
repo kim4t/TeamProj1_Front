@@ -94,7 +94,7 @@ export class ApplicationReviewDetailComponent implements OnInit {
   approve(){
     let data = new FormData();
     data.append('employeeId', this.employeeId)
-    data.append('status','completed')
+    data.append('status','Onboarding completed')
     data.append('comments',this.comment)
     this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
     .subscribe((result) => {})
@@ -103,7 +103,7 @@ export class ApplicationReviewDetailComponent implements OnInit {
   reject(){
     let data = new FormData();
     data.append('employeeId', this.employeeId)
-    data.append('status','rejected')
+    data.append('status','Onboarding rejected')
     data.append('comments',this.comment)
     
     this.http.post('http://localhost:8081/hrModule/applicationReviewDetail/update', data, {responseType: 'json', withCredentials: true})
