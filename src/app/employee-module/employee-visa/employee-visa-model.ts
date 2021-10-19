@@ -9,6 +9,7 @@ export interface visaStage {
     type: string,
     visaEndDate: Date,
     uploadedI983: boolean,
+    comment: string,
 
 }
 export interface sampleDocument {
