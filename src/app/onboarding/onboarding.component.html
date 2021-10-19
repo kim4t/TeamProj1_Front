@@ -43,6 +43,8 @@
 
          <!-- avatar -->
          <label for="avatar"><strong>Avatar</strong></label>
+         <!-- <input type="file" name="avatar" (change)="selectAvatar($event)" placeholder="Choose avatar to upload" ngModel>
+         <button [disabled]="!selectedAvatar" (click)="uploadAvatar()">{{avatarBtn}}</button>  -->
          <app-file-upload (selectedFileEvt)="setFile($event, avartarFileType)"></app-file-upload>
 
         <!-- SSN-->
@@ -153,26 +155,16 @@
           <input type="text" name="emailRef" ngModel placeholder="E-mail">
           <label for="relationshipRef"><strong>Ref. Person's Relationship</strong></label>
           <input type="text" name="relationshipRef" ngModel placeholder="relationship">
-
-
           <label for="addressLine1Ref"><strong>Ref. Person's Address Line 1</strong></label>
           <input type="text" name="addressLine1Ref" ngModel placeholder="Address Line1">
-
           <label for="addressLine2Ref"><strong>Ref. Person's Address Line 2</strong></label>
           <input type="text" name="addressLine2Ref" ngModel placeholder="Address Line2">
-
-
           <label for="cityRef"><strong>Ref. Person's City</strong></label>
           <input type="text" name="cityRef" ngModel placeholder="City">
-
-
           <label for="stateAbbrRef"><strong>Ref. Person's State Abbreivation</strong></label>
           <input type="text" name="stateAbbrRef" ngModel placeholder="State Abbreivation">
-
-
           <label for="stateNameRef"><strong>Ref. Person's State Name</strong></label>
           <input type="text" name="stateNameRef" ngModel placeholder="State Name">
-
           <label for="zipCodeRef"><strong>Ref. Person's Zip Code</strong></label>
           <input type="text" name="zipCodeRef" ngModel placeholder="Zip Code">
         </div>
