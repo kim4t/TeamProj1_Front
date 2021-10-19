@@ -3,33 +3,29 @@
     <div class="form-group">
       <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
     </div>
-  
+    <form #userPost="ngForm" (ngSubmit)="onSubmit(userPost.value)" fxLayoutAlign="stretch" fxLayout="column" class="login-form">
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Employee ID</th>
-          <th scope="col">First Name</th>
-          <th scope="col">Middle Name</th>
-          <th scope="col">Last Name</th>
+          <th scope="col">Id</th>
+          <th scope="col">Last Modifed Date</th>
+          <th scope="col">Type</th>
           <th scope="col">Status</th>
-          <th scope="col">Visa End Date</th>
-          <th scope="col">Day Left</th>
+          
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let d of dataSource | filter:filterTerm">
           <td>{{d.employeeId}}</td>
-          <td>{{d.firstName}}</td>
-          <td>{{d.middleName}}</td>
-          <td>{{d.lastName}}</td>
+          <td>{{d.lastModifedDate}}</td>
+          <td>{{d.type}}</td>
           <td>{{d.status}}</td>
-          <td>{{d.visaEndDate}}</td>
-          <td>{{d.dayLeft}}</td>
-          <!-- <button (click) = "email()"></button> -->
+          <td> <button mat-raised-button type="submit" (click) = "setting(d.employeeId,d.type)" >Detail</button></td>
         </tr>
       </tbody>
     </table>
+  </form>
   </div>
 
 
-
+  

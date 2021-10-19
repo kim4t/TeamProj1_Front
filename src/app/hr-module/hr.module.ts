@@ -18,6 +18,8 @@ import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatIconModule} from '@angular/material/icon';
 import { ApplicationReviewDetailComponent } from './application-review-detail/application-review-detail.component';
 import { CookieService } from 'ngx-cookie-service';
+import { DocumentationReviewComponent } from './documentation-review/documentation-review.component';
+import { DocumentationReviewDetailComponent } from './documentation-review-detail/documentation-review-detail.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { CookieService } from 'ngx-cookie-service';
     StatusTrackingComponent,
     SearchFilterComponent,
     ApplicationReviewComponent,
-    ApplicationReviewDetailComponent
+    ApplicationReviewDetailComponent,
+    DocumentationReviewComponent,
+    DocumentationReviewDetailComponent
   ],
   imports: [
    

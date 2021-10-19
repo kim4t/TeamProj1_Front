@@ -1,0 +1,25 @@
+<div class="container mt-5">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+    </div>
+  
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col"> ID</th>
+          <th scope="col">Title</th>
+          <th scope="col">Path</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of dataSource | filter:filterTerm">
+          <td>{{d.id}}</td>
+          <td>{{d.title}}</td>
+          <td> <button class="btn btn-primary" (click)="viewFile(d.path)">View File</button></td>
+        </tr>
+      </tbody>
+    </table>
+            <button class="btn btn-primary" (click)="approve()">Approve</button>
+            <button class="btn btn-danger" (click)="reject()">Reject</button>
+  </div>
