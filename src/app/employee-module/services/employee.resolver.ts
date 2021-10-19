@@ -18,4 +18,5 @@ export class EmployeeResolver implements Resolve<personalInfo> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<personalInfo> {
     return this.http.get<personalInfo>('http://localhost:8081/employee/homePage', { responseType: 'json', withCredentials: true })
   }
+  
 }

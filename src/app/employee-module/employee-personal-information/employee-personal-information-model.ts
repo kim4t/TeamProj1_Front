@@ -5,6 +5,9 @@ export interface personalInfo {
     employeeSection: employeeSection;
     emergencyContactList: emergencyContact[];
     personalDocumentList: personalDocument[];
+    referencePerson: referencePerson;
+    hrComment?: string;
+    appStatus?: string;
 }
 export interface nameSection {
     personId: number,
@@ -40,6 +43,9 @@ export interface employeeSection {
     startDate: Date,
     endDate: Date,
     title: string,
+    car: string,
+    driverLicense: string
+    driverLicenseExpirationDate: Date,
 }
 
 export interface emergencyContact {
@@ -49,10 +55,22 @@ export interface emergencyContact {
     email: string,
     relationship: string,
     personId: number,
+
 }
 export interface personalDocument {
     docId: number,
     path: string,
     title: string,
     createDate: Date,
+}
+
+export interface referencePerson {
+    personId: number,
+    firstName: string,
+    lastName: string,
+    middleName: string,
+    email: string,
+    cellphone: string,
+    relationship: string,
+    addressSection: addressSection;
 }

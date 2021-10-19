@@ -30,11 +30,15 @@ export class LoginComponent implements OnInit {
 
         //set user name in local cookie
         this.cookieService.set('userName', data.get('userName')!.toString(), { path: "/" });
+        
 
         // If the user logs in successfully, redirect to other pages upon user status: rejected, pending, or approved.
         // Otherwise, let the user stay in same page if it's invalid username or password. 
-        if (result == "HR")
+        if (result == "HR"){
           this.router.navigate(['hrModule']);
+          this.cookieService.set('status', data.get('userName')!.toString(), { path: "/" });
+        }
+         
         else if (result == "employee")
           this.router.navigate(['employeeModule']);
         else if (result == "pending")
