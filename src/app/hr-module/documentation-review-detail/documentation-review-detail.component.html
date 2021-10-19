@@ -20,6 +20,14 @@
         </tr>
       </tbody>
     </table>
+    <form class="example-form">
+              
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput placeholder="..." name="comment" [(ngModel)]="comment"></textarea>
+      </mat-form-field>
+    </form>
+
             <button class="btn btn-primary" (click)="approve()">Approve</button>
             <button class="btn btn-danger" (click)="reject()">Reject</button>
   </div>
