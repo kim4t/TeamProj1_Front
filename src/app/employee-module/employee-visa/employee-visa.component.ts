@@ -72,7 +72,7 @@ export class EmployeeVisaComponent implements OnInit {
         this.http.post('http://localhost:8081/employee/visa/newStep', this.data.visaStage, { responseType: 'json', withCredentials: true }).subscribe((result) => {
           console.log(result);
           this.stage = this.getStage(this.data.visaStage.type);
-          this.status = "OPT Pending"
+          this.status = "OPT pending"
         }, (err) => {
           console.log(err);
         }
@@ -175,7 +175,7 @@ export class EmployeeVisaComponent implements OnInit {
       this.http.post('http://localhost:8081/employee/visa/upload', newDoc, { responseType: 'json', withCredentials: true }).subscribe((result) => {
         console.log(result);
         document.getElementById("uploadRes" + this.stage).innerHTML = "Done";
-        this.status = "OPT Pending"
+        this.status = "OPT pending"
       }, (err) => {
         console.log(err);
       }

@@ -11,7 +11,7 @@
         <p>Your visa status is not OPT or OPT STEM </p>
         <p>Your current Visa type: {{data.visaStage.type}}</p>
     </div>
-    <div class = "comment" [hidden]="status != 'OPT Rejected'">
+    <div class = "comment" [hidden]="status != 'OPT rejected'">
         Your application is rejected, please follow the comment and modified it.<br>
         comment: {{data.visaStage.comment}}
     </div>
@@ -54,11 +54,12 @@
     <br><br>
     <div [hidden]="stage <= 0" class="section">
         <h2 [hidden]="stage == 0">Next step</h2>
-        <div [hidden]="status != 'OPT Pending'" >
+        <div>Your current application status: {{status}}</div>
+        <div [hidden]="status != 'OPT pending'" >
             Please wait for HR to review your application
         </div>
         <!--1 For OPT Receipt -->
-        <div [hidden]="stage != 1 || status == 'OPT Pending'">
+        <div [hidden]="stage != 1 || status == 'OPT pending'">
             <p>Please upload your OPT EAD</p>
 
             <input type="file" name="OPTEAD" (change)="selectFile($event)" ngModel>
@@ -67,7 +68,7 @@
         </div>
 
         <!--2 For OPT EAD -->
-        <div [hidden]="stage != 2 || status == 'OPT Pending'">
+        <div [hidden]="stage != 2 || status == 'OPT pending'">
             <!-- less than 100 days before the expiration date-->
             <p [hidden]="!needInform || data.visaStage.uploadedI983">Please download and fill your I-983 form</p>
             <!-- after upload-->
@@ -82,7 +83,7 @@
         </div>
 
         <!--3 For I-983 -->
-        <div [hidden]="stage != 3 || status == 'OPT Pending'">
+        <div [hidden]="stage != 3 || status == 'OPT pending'">
             <p>Please send the I-983 with all necessary documents to your school and upload the new I-20</p>
             <input type="file" name="I-20" (change)="selectFile($event)" ngModel>
             <button [disabled]="!selectedFile" (click)="uploadFile(3)">upload I-20</button>
@@ -90,7 +91,7 @@
         </div>
 
         <!--4 For I-20 -->
-        <div [hidden]="stage != 4 || status == 'OPT Pending'">
+        <div [hidden]="stage != 4 || status == 'OPT pending'">
             <p>Please upload your OPT STEM Receipt</p>
             <input type="file" name="OPT STEM Receipt" (change)="selectFile($event)" ngModel>
             <button [disabled]="!selectedFile" (click)="uploadFile(4)">upload OPT STEM Receipt</button>
@@ -98,7 +99,7 @@
         </div>
 
         <!--5 For OPT STEM Receipt-->
-        <div [hidden]="stage != 5 || status == 'OPT Pending'">
+        <div [hidden]="stage != 5 || status == 'OPT pending'">
             <p>Please upload your OPT STEM EAD</p>
             <input type="file" name="OPT STEM EAD" (change)="selectFile($event)" ngModel>
             <button [disabled]="!selectedFile" (click)="uploadFile(5)">upload OPT STEM EAD</button>
