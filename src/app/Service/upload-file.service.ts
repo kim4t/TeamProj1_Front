@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 export class UploadFileService {
 
   constructor(private https: HttpClient) { }
+
+  // Use this as return url
   pushFileToStorage(file: File): Observable<string> {
     const data: FormData = new FormData();
     const fileName = file.name;
@@ -18,3 +20,5 @@ export class UploadFileService {
     return this.https.post('http://localhost:8081/uploadFile', data, {responseType: 'text', withCredentials: true})
   }
 }
+
+

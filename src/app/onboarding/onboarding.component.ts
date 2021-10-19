@@ -5,8 +5,10 @@ import {emergencyContact} from '../model/emergencyContact.model';
 import {onboarding} from '../model/onboarding.model';
 import {referencePerson} from '../model/referencePerson.model';
 import {FileType} from '../enum/fileType.enum';
-import {UploadFileService} from 'src/app/Service/upload-file.service';
+import { UploadFileService } from 'src/app/Service/upload-file.service';
 import {personalInfo} from '../employee-module/employee-personal-information/employee-personal-information-model';
+import { Router } from '@angular/router';
+
 
 enum IsVisa { YES, NO, NONE }
 enum UserVisaType { Citizen = 'Citizen', GreenCard = 'Green Card', NONE = 'NONE' }
@@ -17,7 +19,7 @@ enum UserVisaType { Citizen = 'Citizen', GreenCard = 'Green Card', NONE = 'NONE'
   styleUrls: ['./onboarding.component.css'],
 })
 export class OnboardingComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private http: HttpClient, private uploadService: UploadFileService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient, private uploadService: UploadFileService) { }
 
   emergencyContact: emergencyContact[] = [];
   avartarFileType = FileType.Avatar;
@@ -66,31 +68,42 @@ export class OnboardingComponent implements OnInit {
 
 
     /*  Send file to backend as JSON data type */
-    // this.http.post('http://localhost:8081/employee/onboard ', onboardingInfo)
+    // this.http.post('http://localhost:8081/employee/onboard ', onboardingInfo, {responseType: "text"})
     this.http.post('http://localhost:8081/employee/onboard ', onboardingInfo, {responseType: "text"})
         .subscribe((result) => {
           console.log(result);
+
+          /* If the user log in successfully, he/ she will be redirected to the Login Page */
+          if (result == "Done")
+          this.router.navigate(['']);
         });
   }
 
   URL = 'https://teamproj1bucket.s3.us-east-2.amazonaws.com';
 
   setFile(file: File, fileType: FileType): void {
-    if (fileType == FileType.Avatar) {
-      // this.form_data.append('avatar', file, file.name);
-      // Just need to get the url from file-upload Service
-      // this.form_data.append('avatar', this.URL + '/' + file.name);
-      this.avatar = this.URL + '/' + file.name;
-    } else if (fileType == FileType.DriverLicense) {
-      // this.form_data.delete('driverLicense');
-      // this.form_data.append('driverLicense', this.URL + '/' + file.name);
-      this.visaDocumentPath = this.URL + '/' + file.name;
-    } else if (fileType == FileType.Visa) {
-      // this.form_data.delete('visa');
-      // this.form_data.append('visa', this.URL + '/' + file.name);
-      this.driverLicenseDocumentPath = this.URL + '/' + file.name;
+    if (fileType == FileType.Avatar) 
+    {
+      // this.avatar = this.URL + '/' + file.name;
+      /* get the url from backend */
+      this.uploadService.pushFileToStorage(file).subscribe(event =>{
+        this.avatar = event;
+      })
+    }
+    else if (fileType == FileType.DriverLicense) 
+    {
+      this.uploadService.pushFileToStorage(file).subscribe(event =>{
+        this.visaDocumentPath = event;
+      })
+    } 
+    else if (fileType == FileType.Visa) 
+    {
+      this.uploadService.pushFileToStorage(file).subscribe(event =>{
+        this.driverLicenseDocumentPath = event;
+      })
     }
   }
+
 
   addEmergencyContact(): void {
     // create new object of emergencyContact
@@ -153,7 +166,7 @@ export class OnboardingComponent implements OnInit {
     // this.emergencyContact.pop(e);
   }
 
-  trackByIndex(index: number, obj: any): any {
+  trackByIndex(index: number, obj: any): number {
     return index;
   }
 }

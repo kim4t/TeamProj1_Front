@@ -34,18 +34,18 @@ export class EmployeePersonalInformationComponent implements OnInit {
   ) { }
 
   //for name section
-  editName() {
+  editName(): void{
     this.avatarBtn = "Upload avatar";
     this.tempInfo.nameSection = JSON.parse(JSON.stringify(this.info.nameSection));
     this.edit.editName = true;
 
   }
-  saveName() {
+  saveName(): void {
     this.employeehttpService.update('name', this.tempInfo.nameSection).subscribe((result) => {
       console.log(result);
       this.info.nameSection = JSON.parse(JSON.stringify(this.tempInfo.nameSection));
       this.edit.editName = false;
-      let timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
+      const timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
       this.info.nameSection.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
       this.ssn = this.info.nameSection.ssn.toString().substring(5);
     }, (err) => {
@@ -53,7 +53,7 @@ export class EmployeePersonalInformationComponent implements OnInit {
     }
     )
   }
-  cancelName(nameForm: NgForm) {
+  cancelName(nameForm: NgForm): void {
     if (nameForm.dirty) {
       //use dialog check whether discard changes
       this.dialogService.confirm("Are you sure to discard all your changes?").subscribe(
@@ -66,10 +66,10 @@ export class EmployeePersonalInformationComponent implements OnInit {
     }
   }
 
-  selectAvatar(event: any) {
+  selectAvatar(event: any): void {
     this.selectedAvatar = event.target.files.item(0);
   }
-  uploadAvatar() {
+  uploadAvatar(): void {
     this.uploadService.pushFileToStorage(this.selectedAvatar).subscribe(event => {
       //get the download url from backend
       this.tempInfo.nameSection.avatar = event;
@@ -215,7 +215,7 @@ export class EmployeePersonalInformationComponent implements OnInit {
 
   uploadDocument(event: any, id: number) {
 
-    let doc = event.target.files.item(0);
+    const doc = event.target.files.item(0);
     this.uploadService.pushFileToStorage(doc).subscribe(event => {
       //get the download url from backend
       this.tempInfo.personalDocumentList[id].path = event;
@@ -240,7 +240,7 @@ export class EmployeePersonalInformationComponent implements OnInit {
         this.tempInfo = JSON.parse(JSON.stringify(data.empResolver));
       }
     );
-    let timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
+    const timeDiff = Math.abs(Date.now() - new Date(this.info.nameSection.dob).getTime());
     this.info.nameSection.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365);
     this.ssn = this.info.nameSection.ssn.toString().substring(5);
 

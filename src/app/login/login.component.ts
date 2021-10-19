@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http'; 
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -12,15 +12,16 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient, private cookieService: CookieService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void 
+  {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
   }
 
-  onSubmit(form: any) {
+  onSubmit(form: any): void {
 
     /** POST username, password, e-mail, and token to the backend */
 
-    let data = new FormData();
+    const data = new FormData();
     data.append('userName', form['userName']);
     data.append('password', form['password']);
     this.http.post('http://localhost:9999/login', data, { responseType: 'text', withCredentials: true })
@@ -43,11 +44,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['employee/rejected'])
         else
           alert("Invalid Username or Password !");
-      }
-
-      )
+      })
   }
-
 }
 
 
