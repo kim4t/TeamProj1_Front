@@ -16,11 +16,13 @@
       </thead>
       <tbody>
         <tr *ngFor="let d of dataSource | filter:filterTerm">
-          <td>{{d.employeeId}}</td>
-          <td>{{d.lastModifedDate}}</td>
-          <td>{{d.type}}</td>
-          <td>{{d.status}}</td>
-          <td> <button mat-raised-button type="submit" (click) = "setEmployeeId(d.employeeId)" >Detail</button></td>
+          
+          <td *ngIf="d.status == 'Onboarding pending' || d.status == 'Onboarding rejected'">{{d.employeeId}}</td>
+          <td *ngIf="d.status == 'Onboarding pending' || d.status == 'Onboarding rejected'">{{d.lastModifedDate}}</td>
+          <td *ngIf="d.status == 'Onboarding pending' || d.status == 'Onboarding rejected'">{{d.type}}</td>
+          <td *ngIf="d.status == 'Onboarding pending' || d.status == 'Onboarding rejected'">{{d.status}}</td>
+          <td *ngIf="d.status == 'Onboarding pending' || d.status == 'Onboarding rejected'"> <button mat-raised-button type="submit" (click) = "setEmployeeId(d.employeeId)" >Detail</button></td>
+        
         </tr>
       </tbody>
     </table>

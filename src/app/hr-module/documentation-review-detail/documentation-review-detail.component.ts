@@ -26,6 +26,7 @@ export class DocumentationReviewDetailComponent implements OnInit {
   comment;
   filterTerm;
   downloadUrl;
+  isPermenent:boolean = false;
   
   ngOnInit(): void {
     this.route.queryParams
@@ -33,10 +34,11 @@ export class DocumentationReviewDetailComponent implements OnInit {
        
         this.employeeId = params.employeeId;
         this.fileTitle = params.type;
-        console.log(this.fileTitle)
+        console.log("File Title: "+this.fileTitle)
       }
     );
-        
+    
+    this.checkPermenent();
     this.get();
 
    
@@ -105,4 +107,13 @@ export class DocumentationReviewDetailComponent implements OnInit {
     .subscribe((result) => {})
   }
 
+  checkPermenent(){
+    if(this.fileTitle == 'Green Card' || this.fileTitle == 'Citizen'){
+      this.isPermenent = true;
+    }
+    else{
+      this.isPermenent = false;
+    }
+   
+  }
 }
